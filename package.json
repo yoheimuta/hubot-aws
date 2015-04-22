@@ -1,0 +1,33 @@
+{
+  "name": "hubot-aws",
+  "version": "0.0.1",
+  "description": "Hubot masters aws commands",
+  "repository": {
+      "type": "git",
+      "url": "ssh://git@github.com/yoheimuta/hubot-aws.git"
+  },
+  "main": "index.coffee",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "aws-sdk": "2.1.23",
+    "tsv": "0.2.0",
+    "async": "0.9.0",
+    "underscore": "1.8.3",
+    "cson": "3.0.1",
+    "moment": "2.10.2"
+  },
+  "keywords": [
+    "aws",
+    "hubot",
+    "hubot aws",
+    "hubot-aws",
+    "aws-cli"
+  ],
+  "bugs": {
+    "url": "https://github.com/yoheimuta/hubot-aws/issues"
+  },
+  "author": "yoheimuta <yoheimuta@gmail.com>",
+  "license": "MIT"
+}
