@@ -1,10 +1,28 @@
 # hubot-aws
 
+[![NPM](https://nodei.co/npm/hubot-aws.png)](https://nodei.co/npm/hubot-aws/)
+
 Hubot masters aws commands
 
-### Commands
+## Installation
+
+Add **hubot-aws** to your `package.json` file:
 
 ```
+npm install --save hubot-aws
+```
+
+Add **hubot-aws** to your `external-scripts.json`:
+
+```json
+["hubot-aws"]
+```
+
+Run `npm install`
+
+## Commands
+
+```ruby
 hubot autoscaling create --name=[group_name] --launch_name=[launch_configuration_name] - Create an AutoScaling Group
 hubot autoscaling create --name=[group_name] --launch_name=[launch_configuration_name] --dry-run - Try creating an AutoScaling Group
 hubot autoscaling delete --group_name=[group_name] - Delete the AutoScaling Group
