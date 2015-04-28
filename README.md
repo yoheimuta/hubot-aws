@@ -42,6 +42,8 @@ export HUBOT_AWS_DEBUG="1"
 
 ```ruby
 hubot autoscaling create --name=[group_name] --launch_name=[launch_configuration_name] - Create an AutoScaling Group
+hubot autoscaling create --name=[group_name] --launch_name=[launch_configuration_name] --capacity=[number] - Create an AutoScaling Group with desiredCapacity
+hubot autoscaling create --name=[group_name] --launch_name=[launch_configuration_name] --capacity=[number] --dry-run - Try creating an AutoScaling Group with desiredCapacity
 hubot autoscaling create --name=[group_name] --launch_name=[launch_configuration_name] --dry-run - Try creating an AutoScaling Group
 hubot autoscaling delete --group_name=[group_name] - Delete the AutoScaling Group
 hubot autoscaling delete --group_name=[group_name] --force - Delete the AutoScaling Group with live instances
@@ -65,9 +67,13 @@ hubot autoscaling policy put --add --group_name=[group_name] --dry-run    - Try 
 hubot autoscaling policy put --remove --group_name=[group_name] - Put an AutoScaling ScaleIn Policy
 hubot autoscaling policy put --remove --group_name=[group_name] --dry-run - Try putting an AutoScaling ScaleIn Policy
 hubot autoscaling update --json=[json] - Update the AutoScaling Group
+hubot autoscaling update --json=[json] --dry-run - Try updating the AutoScaling Group
 hubot autoscaling update --name=[name] --desired=[desired] - Update DesiredCapacity the AutoScaling Group
+hubot autoscaling update --name=[name] --desired=[desired] --dry-run - Try updating DesiredCapacity the AutoScaling Group
 hubot autoscaling update --name=[name] --max=[max] - Update MaxSize of the AutoScaling Group
+hubot autoscaling update --name=[name] --max=[max] --dry-run - Try updating MaxSize of the AutoScaling Group
 hubot autoscaling update --name=[name] --min=[min] - Update MinSize of the AutoScaling Group
+hubot autoscaling update --name=[name] --min=[min] --dry-run - Try updating MinSize of the AutoScaling Group
 hubot cloudwatch alarm delete --name=[alarm_name] - Delete the Alarm
 hubot cloudwatch alarm ls - Displays all Alarms
 hubot cloudwatch alarm ls --name=[alarm_name] - Details an Alarm
