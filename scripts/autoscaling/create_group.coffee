@@ -69,6 +69,7 @@ module.exports = (robot) ->
     params.AutoScalingGroupName    = name
     params.LaunchConfigurationName = conf
     params.DesiredCapacity         = capacity
+    params.MinSize                 = capacity
 
     if dry_run
       msg.send util.inspect(params, false, null)
