@@ -1,0 +1,35 @@
+ImageId: "ami-936d9d93"
+
+InstanceType: "c3.xlarge"
+
+KeyName: "yourkey"
+
+BlockDeviceMappings: [
+  {
+    VirtualName: 'ephemeral0'
+    DeviceName: '/dev/sdb'
+  }
+  {
+    VirtualName: 'ephemeral1'
+    DeviceName: '/dev/sdc'
+  }
+  {
+    DeviceName: '/dev/sda1'
+    Ebs:
+      VolumeSize: 80
+      VolumeType: 'gp2'
+      DeleteOnTermination: true
+  }
+]
+
+AssociatePublicIpAddress : true
+
+EbsOptimized: false
+
+SecurityGroups: [
+  "sg-your"
+]
+
+InstanceMonitoring: {
+  Enabled: false
+}
