@@ -93,7 +93,7 @@ hubot s3 ls --bucket_name=[bucket-name] --prefix=[prefix] - Displays all objects
 hubot s3 ls --bucket_name=[bucket-name] --prefix=[prefix] --marker=[marker] - Displays all objects with prefix from marker
 ```
 
-## Configuration
+## Configurations
 
 Set environment variables like an example below.
 
@@ -116,6 +116,8 @@ export HUBOT_AWS_AS_NOTIFICATION="files/aws/autoscaling/put_notification/app.cso
 export HUBOT_AWS_CW_ALARM_ADD="files/aws/cloudwatch/put_metric_alarm/add/app.cson"
 export HUBOT_AWS_CW_ALARM_REMOVE="files/aws/cloudwatch/put_metric_alarm/remove/app.cson"
 ```
+
+You can build your own configurations by referring to the [example files](https://github.com/yoheimuta/hubot-aws/tree/master/example).
 
 ## Examples
 
