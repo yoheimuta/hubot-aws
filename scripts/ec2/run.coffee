@@ -19,8 +19,12 @@ module.exports = (robot) ->
 
     msg.send "Requesting dry-run=#{dry_run}..."
 
-    run_configuration_path = process.env.HUBOT_AWS_EC2_RUN_CONFIG
-    params = cson.parseCSONFile run_configuration_path
+    config_path = process.env.HUBOT_AWS_EC2_RUN_CONFIG
+    unless fs.existsSync config_path
+      msg.send "NOT FOUND HUBOT_AWS_EC2_RUN_CONFIG"
+      return
+
+    params = cson.parseCSONFile config_path
 
     userdata_path = process.env.HUBOT_AWS_EC2_RUN_USERDATA_PATH
     if fs.existsSync userdata_path

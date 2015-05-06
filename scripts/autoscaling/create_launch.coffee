@@ -21,6 +21,10 @@ module.exports = (robot) ->
     msg.send "Requesting name=#{name}, dry-run=#{dry_run}..."
 
     launch_configuration_path  = process.env.HUBOT_AWS_AS_LAUNCH_CONF_CONFIG
+    unless fs.existsSync launch_configuration_path
+      msg.send "NOT FOUND HUBOT_AWS_AS_LAUNCH_CONF_CONFIG"
+      return
+
     params = cson.parseCSONFile launch_configuration_path
 
     params.LaunchConfigurationName = name
