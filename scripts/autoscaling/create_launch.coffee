@@ -4,21 +4,37 @@
 # Commands:
 #   hubot autoscaling launch create --name=[launch_configuration_name] --dry-run - Try creating an AutoScaling LaunchConfiguration
 #   hubot autoscaling launch create --name=[launch_configuration_name] - Create an AutoScaling LaunchConfiguration
+#   hubot autoscaling launch create --name=[launch_configuration_name] --image_id=[ami-id] --dry-run - Try creating an AutoScaling LaunchConfiguration with image-id
+#   hubot autoscaling launch create --name=[launch_configuration_name] --image_id=[ami-id] - Create an AutoScaling LaunchConfiguration with image-id
 
 fs   = require 'fs'
 cson = require 'cson'
 util = require 'util'
 
+get_arg_params = (arg) ->
+    dry_run = if arg.match(/--dry-run/) then true else false
+
+    name_capture = /--name=(.*?)( |$)/.exec(arg)
+    name = if name_capture then name_capture[1] else null
+
+    image_id_capture = /--image_id=(.*?)( |$)/.exec(arg)
+    image_id = if image_id_capture then image_id_capture[1] else null
+
+    return { dry_run : dry_run, name: name, image_id: image_id }
+
 module.exports = (robot) ->
-  robot.respond /autoscaling launch create --name=(.*?)(| --dry-run)$/i, (msg) ->
+  robot.respond /autoscaling launch create(.*)$/i, (msg) ->
     unless require('../../auth.coffee').canAccess(robot, msg.envelope.user)
       msg.send "You cannot access this feature. Please contact with admin"
       return
 
-    name    = msg.match[1].trim()
-    dry_run = if msg.match[2] then true else false
+    arg_params = get_arg_params(msg.match[1])
 
-    msg.send "Requesting name=#{name}, dry-run=#{dry_run}..."
+    dry_run    = arg_params.dry_run
+    name       = arg_params.name
+    image_id   = arg_params.image_id
+
+    msg.send "Requesting name=#{name}, image_id=#{image_id}, dry-run=#{dry_run}..."
 
     launch_configuration_path  = process.env.HUBOT_AWS_AS_LAUNCH_CONF_CONFIG
     unless fs.existsSync launch_configuration_path
@@ -28,6 +44,7 @@ module.exports = (robot) ->
     params = cson.parseCSONFile launch_configuration_path
 
     params.LaunchConfigurationName = name
+    params.ImageId = image_id if image_id
 
     userdata_path = process.env.HUBOT_AWS_AS_LAUNCH_CONF_USERDATA_PATH
     if fs.existsSync userdata_path

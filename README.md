@@ -49,6 +49,8 @@ hubot autoscaling delete --group_name=[group_name] - Delete the AutoScaling Grou
 hubot autoscaling delete --group_name=[group_name] --force - Delete the AutoScaling Group with live instances
 hubot autoscaling launch create --name=[launch_configuration_name] - Create an AutoScaling LaunchConfiguration
 hubot autoscaling launch create --name=[launch_configuration_name] --dry-run - Try creating an AutoScaling LaunchConfiguration
+hubot autoscaling launch create --name=[launch_configuration_name] --image_id=[ami-id] --dry-run - Try creating an AutoScaling LaunchConfiguration with image-id
+hubot autoscaling launch create --name=[launch_configuration_name] --image_id=[ami-id] - Create an AutoScaling LaunchConfiguration with image-id
 hubot autoscaling launch delete --name=[launch_configuration_name] - Delete the AutoScaling LaunchConfiguration
 hubot autoscaling launch ls - Displays all AutoScaling LaunchConfigurations
 hubot autoscaling launch ls --name=[launch_configuration_name] - Details an Autoscaling LaunchConfiguration
@@ -81,6 +83,8 @@ hubot ec2 ls - Displays all Instances
 hubot ec2 ls --instance_id=[instance_id] - Details an Instance
 hubot ec2 run - Run an Instance
 hubot ec2 run --dry-run - Try running an Instance
+hubot ec2 run --image-id=[ami-id] --dry-run - Try running an Instance with image-id
+hubot ec2 run --image-id=[ami-id] - Run an Instance with image-id
 hubot ec2 sg create --vpc_id=[vpc_id] --group_name=[group_name] --desc=[desc] - Create a SecurityGroup
 hubot ec2 sg create --vpc_id=[vpc_id] --group_name=[group_name] --desc=[desc] --dry-run - Try creating a SecurityGroup
 hubot ec2 sg delete --group_id=[group_id] - Delete the SecurityGroup
