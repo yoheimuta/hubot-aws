@@ -1,0 +1,7 @@
+PolicyName: 'Add'
+
+ScalingAdjustment: 2
+
+AdjustmentType: 'ChangeInCapacity'
+
+Cooldown: 300

@@ -1,0 +1,19 @@
+ComparisonOperator: 'LessThanOrEqualToThreshold'
+
+EvaluationPeriods: 1
+
+MetricName: 'CPUUtilization'
+
+Namespace: 'AWS/EC2'
+
+Period: 900
+
+Statistic: 'Average'
+
+Threshold: 30
+
+ActionsEnabled: true
+
+AlarmActions: [
+  'youraction'
+]

@@ -1,0 +1,5 @@
+PolicyName: 'Remove'
+
+ScalingAdjustment: -1
+
+AdjustmentType: 'ChangeInCapacity'
