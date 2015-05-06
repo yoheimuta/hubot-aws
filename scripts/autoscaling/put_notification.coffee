@@ -31,9 +31,9 @@ module.exports = (robot) ->
         msg.send util.inspect(param, false, null)
         continue
 
-      autoscaling.putScalingPolicy param, (err, res)->
+      autoscaling.putNotificationConfiguration param, (err, res)->
         if err
-          msg.send "PutScalingPolicyError: #{err}"
+          msg.send "PutNotificationConfigurationError: #{err}"
           msg.send util.inspect(param, false, null)
           return
         msg.send util.inspect(res, false, null)
