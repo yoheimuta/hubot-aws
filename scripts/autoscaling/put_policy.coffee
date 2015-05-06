@@ -7,6 +7,7 @@
 #   hubot autoscaling policy put --remove --group_name=[group_name] --dry-run - Try putting an AutoScaling ScaleIn Policy
 #   hubot autoscaling policy put --remove --group_name=[group_name] - Put an AutoScaling ScaleIn Policy
 
+fs   = require 'fs'
 cson = require 'cson'
 util = require 'util'
 
@@ -42,10 +43,20 @@ module.exports = (robot) ->
 
     msg.send "Requesting add policy, AutoScalingGroupName=#{group_name}, dry-run=#{dry_run}..."
 
-    params = cson.parseCSONFile process.env.HUBOT_AWS_AS_POLICY_ADD
+    policy_config_path = process.env.HUBOT_AWS_AS_POLICY_ADD
+    unless fs.existsSync policy_config_path
+      msg.send "NOT FOUND HUBOT_AWS_AS_POLICY_ADD"
+      return
+
+    params = cson.parseCSONFile policy_config_path
     params.AutoScalingGroupName = group_name
 
-    alarm_params = cson.parseCSONFile process.env.HUBOT_AWS_CW_ALARM_ADD
+    alarm_config_path = process.env.HUBOT_AWS_CW_ALARM_ADD
+    unless fs.existsSync alarm_config_path
+      msg.send "NOT FOUND HUBOT_AWS_CW_ALARM_ADD"
+      return
+
+    alarm_params = cson.parseCSONFile alarm_config_path
     alarm_params.AlarmName = "awsec2-#{group_name}-add"
     alarm_params.Dimensions = [{
       Name: 'AutoScalingGroupName',
@@ -69,10 +80,20 @@ module.exports = (robot) ->
 
     msg.send "Requesting remove policy, AutoScalingGroupName=#{group_name}, dry-run=#{dry_run}..."
 
-    params = cson.parseCSONFile process.env.HUBOT_AWS_AS_POLICY_REMOVE
+    policy_config_path = process.env.HUBOT_AWS_AS_POLICY_REMOVE
+    unless fs.existsSync policy_config_path
+      msg.send "NOT FOUND HUBOT_AWS_AS_POLICY_REMOVE"
+      return
+
+    params = cson.parseCSONFile policy_config_path
     params.AutoScalingGroupName = group_name
 
-    alarm_params = cson.parseCSONFile process.env.HUBOT_AWS_CW_ALARM_REMOVE
+    alarm_config_path = process.env.HUBOT_AWS_CW_ALARM_REMOVE
+    unless fs.existsSync alarm_config_path
+      msg.send "NOT FOUND HUBOT_AWS_CW_ALARM_REMOVE"
+      return
+
+    alarm_params = cson.parseCSONFile alarm_config_path
     alarm_params.AlarmName = "awsec2-#{group_name}-remove"
     alarm_params.Dimensions = [{
       Name: 'AutoScalingGroupName',

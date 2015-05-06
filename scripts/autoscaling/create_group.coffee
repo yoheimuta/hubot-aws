@@ -34,7 +34,7 @@ module.exports = (robot) ->
     msg.send "Requesting name=#{name}, launch_name=#{conf}, dry-run=#{dry_run}..."
 
     config_path = process.env.HUBOT_AWS_AS_GROUP_CONFIG
-    unless config_path
+    unless fs.existsSync config_path
       msg.send "NOT FOUND HUBOT_AWS_AS_GROUP_CONFIG"
       return
 
@@ -61,7 +61,7 @@ module.exports = (robot) ->
     msg.send "Requesting name=#{name}, launch_name=#{conf}, capacity=#{capacity}, dry-run=#{dry_run}..."
 
     config_path = process.env.HUBOT_AWS_AS_GROUP_CONFIG
-    unless config_path
+    unless fs.existsSync config_path
       msg.send "NOT FOUND HUBOT_AWS_AS_GROUP_CONFIG"
       return
 

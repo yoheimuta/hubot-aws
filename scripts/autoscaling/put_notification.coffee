@@ -5,6 +5,7 @@
 #   hubot autoscaling notification put --group_name=[group_name] --dry-run    - Try putting an AutoScaling Notifications
 #   hubot autoscaling notification put --group_name=[group_name]   - Put an AutoScaling Notifications
 
+fs   = require 'fs'
 cson = require 'cson'
 util = require 'util'
 
@@ -19,7 +20,12 @@ module.exports = (robot) ->
 
     msg.send "Requesting notifications, AutoScalingGroupName=#{group_name}, dry-run=#{dry_run}..."
 
-    params = cson.parseCSONFile process.env.HUBOT_AWS_AS_NOTIFICATION
+    config_path = process.env.HUBOT_AWS_AS_NOTIFICATION
+    unless fs.existsSync config_path
+      msg.send "NOT FOUND HUBOT_AWS_AS_NOTIFICATION"
+      return
+
+    params = cson.parseCSONFile config_path
 
     aws = require('../../aws.coffee').aws()
     autoscaling = new aws.AutoScaling({apiVersion: '2011-01-01'})
