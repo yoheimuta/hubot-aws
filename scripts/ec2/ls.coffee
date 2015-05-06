@@ -36,6 +36,7 @@ module.exports = (robot) ->
           for data in res.Reservations
             ins = data.Instances[0]
 
+            name = '[NoName]'
             for tag in ins.Tags when tag.Key is 'Name'
               name = tag.Value
 
