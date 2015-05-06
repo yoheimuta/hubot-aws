@@ -70,6 +70,7 @@ module.exports = (robot) ->
     params.LaunchConfigurationName = conf
     params.DesiredCapacity         = capacity
     params.MinSize                 = capacity
+    params.MaxSize                 = capacity
 
     if dry_run
       msg.send util.inspect(params, false, null)
