@@ -4,20 +4,33 @@
 # Commands:
 #   hubot ec2 run --dry-run - Try running an Instance
 #   hubot ec2 run - Run an Instance
+#   hubot ec2 run --image-id=[ami-id] --dry-run - Try running an Instance with image-id
+#   hubot ec2 run --image-id=[ami-id] - Run an Instance with image-id
 
 fs   = require 'fs'
 cson = require 'cson'
 util = require 'util'
 
+get_arg_params = (arg) ->
+    dry_run = if arg.match(/--dry-run/) then true else false
+
+    image_id_capture = /--image_id=(.*?)( |$)/.exec(arg)
+    image_id = if image_id_capture then image_id_capture[1] else null
+
+    return { dry_run : dry_run, image_id: image_id }
+
 module.exports = (robot) ->
-  robot.respond /ec2 run(| --dry-run)$/i, (msg) ->
+  robot.respond /ec2 run(.*)$/i, (msg) ->
     unless require('../../auth.coffee').canAccess(robot, msg.envelope.user)
       msg.send "You cannot access this feature. Please contact with admin"
       return
 
-    dry_run = if msg.match[1] then true else false
+    arg_params = get_arg_params(msg.match[1])
 
-    msg.send "Requesting dry-run=#{dry_run}..."
+    dry_run    = arg_params.dry_run
+    image_id   = arg_params.image_id
+
+    msg.send "Requesting image_id=#{image_id}, dry-run=#{dry_run}..."
 
     config_path = process.env.HUBOT_AWS_EC2_RUN_CONFIG
     unless fs.existsSync config_path
@@ -25,6 +38,8 @@ module.exports = (robot) ->
       return
 
     params = cson.parseCSONFile config_path
+
+    params.ImageId = image_id if image_id
 
     userdata_path = process.env.HUBOT_AWS_EC2_RUN_USERDATA_PATH
     if fs.existsSync userdata_path
