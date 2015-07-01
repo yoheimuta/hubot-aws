@@ -4,8 +4,8 @@
 # Commands:
 #   hubot autoscaling launch create --name=[launch_configuration_name] --dry-run - Try creating an AutoScaling LaunchConfiguration
 #   hubot autoscaling launch create --name=[launch_configuration_name] - Create an AutoScaling LaunchConfiguration
-#   hubot autoscaling launch create --name=[launch_configuration_name] --image_id=[ami-id] --dry-run - Try creating an AutoScaling LaunchConfiguration with image-id
-#   hubot autoscaling launch create --name=[launch_configuration_name] --image_id=[ami-id] - Create an AutoScaling LaunchConfiguration with image-id
+#   hubot autoscaling launch create --name=[launch_configuration_name] --image_id=[ami-id] --dry-run - Try creating an AutoScaling LaunchConfiguration with image_id
+#   hubot autoscaling launch create --name=[launch_configuration_name] --image_id=[ami-id] - Create an AutoScaling LaunchConfiguration with image_id
 
 fs   = require 'fs'
 cson = require 'cson'

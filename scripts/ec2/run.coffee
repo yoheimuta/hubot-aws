@@ -4,8 +4,8 @@
 # Commands:
 #   hubot ec2 run --dry-run - Try running an Instance
 #   hubot ec2 run - Run an Instance
-#   hubot ec2 run --image-id=[ami-id] --dry-run - Try running an Instance with image-id
-#   hubot ec2 run --image-id=[ami-id] - Run an Instance with image-id
+#   hubot ec2 run --image_id=[ami-id] --dry-run - Try running an Instance with image_id
+#   hubot ec2 run --image_id=[ami-id] - Run an Instance with image_id
 
 fs   = require 'fs'
 cson = require 'cson'
