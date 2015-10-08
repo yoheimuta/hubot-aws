@@ -17,7 +17,7 @@ module.exports = (robot) ->
     aws = require('../../aws.coffee').aws()
     cloudwatch = new aws.CloudWatch({apiVersion: '2010-08-01'})
 
-    cloudwatch.describeAlarms (if alarm_name then { AlarmNames: [alarm_name] } else null), (err, res)->
+    cloudwatch.describeAlarms (if alarm_name then { AlarmNames: [alarm_name] } else null), (err, res) ->
       if err
         msg.send "Error: #{err}"
       else

@@ -21,7 +21,7 @@ module.exports = (robot) ->
     aws = require('../../aws.coffee').aws()
     autoscaling = new aws.AutoScaling({apiVersion: '2011-01-01'})
 
-    autoscaling.deleteLaunchConfiguration { LaunchConfigurationName: name }, (err, res)->
+    autoscaling.deleteLaunchConfiguration { LaunchConfigurationName: name }, (err, res) ->
       if err
         msg.send "Error: #{err}"
       else

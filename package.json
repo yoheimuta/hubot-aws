@@ -3,12 +3,12 @@
   "version": "0.0.5",
   "description": "Hubot masters aws commands",
   "repository": {
-      "type": "git",
-      "url": "ssh://git@github.com/yoheimuta/hubot-aws.git"
+    "type": "git",
+    "url": "ssh://git@github.com/yoheimuta/hubot-aws.git"
   },
   "main": "index.coffee",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "grunt test"
   },
   "dependencies": {
     "aws-sdk": "2.1.23",
@@ -30,5 +30,15 @@
     "url": "https://github.com/yoheimuta/hubot-aws/issues"
   },
   "author": "yoheimuta <yoheimuta@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "coffee-errors": "^0.8.6",
+    "coffee-script": "^1.10.0",
+    "coffeelint": "^1.13.0",
+    "grunt-coffeelint": "0.0.13",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-jsonlint": "^1.0.4",
+    "grunt-notify": "^0.4.1",
+    "matchdep": "^1.0.0"
+  }
 }

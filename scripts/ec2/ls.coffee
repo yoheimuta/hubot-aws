@@ -19,14 +19,14 @@ module.exports = (robot) ->
     aws = require('../../aws.coffee').aws()
     ec2 = new aws.EC2({apiVersion: '2014-10-01'})
 
-    ec2.describeInstances (if ins_id then { InstanceIds: [ins_id] } else null), (err, res)->
+    ec2.describeInstances (if ins_id then { InstanceIds: [ins_id] } else null), (err, res) ->
       if err
         msg.send "DescribeInstancesError: #{err}"
       else
         if ins_id
           msg.send util.inspect(res, false, null)
 
-          ec2.describeInstanceAttribute { InstanceId: ins_id, Attribute: 'userData' }, (err, res)->
+          ec2.describeInstanceAttribute { InstanceId: ins_id, Attribute: 'userData' }, (err, res) ->
             if err
               msg.send "DescribeInstanceAttributeError: #{err}"
             else if res.UserData.Value
@@ -53,6 +53,6 @@ module.exports = (robot) ->
             })
 
           messages.sort (a, b) ->
-              moment(a.time) - moment(b.time)
+            moment(a.time) - moment(b.time)
           message = tsv.stringify(messages) || '[None]'
           msg.send message

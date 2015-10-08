@@ -17,7 +17,7 @@ module.exports = (robot) ->
     aws = require('../../aws.coffee').aws()
     autoscaling = new aws.AutoScaling({apiVersion: '2011-01-01'})
 
-    autoscaling.describeNotificationConfigurations (if group_name then { AutoScalingGroupNames: [group_name] } else null), (err, res)->
+    autoscaling.describeNotificationConfigurations (if group_name then { AutoScalingGroupNames: [group_name] } else null), (err, res) ->
       if err
         msg.send "Error: #{err}"
       else

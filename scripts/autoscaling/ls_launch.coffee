@@ -18,7 +18,7 @@ module.exports = (robot) ->
     aws = require('../../aws.coffee').aws()
     autoscaling = new aws.AutoScaling({apiVersion: '2011-01-01'})
 
-    autoscaling.describeLaunchConfigurations (if arg_name then { LaunchConfigurationNames: [arg_name] } else null), (err, res)->
+    autoscaling.describeLaunchConfigurations (if arg_name then { LaunchConfigurationNames: [arg_name] } else null), (err, res) ->
       if err
         msg.send "Error: #{err}"
       else
@@ -37,6 +37,6 @@ module.exports = (robot) ->
             })
 
           messages.sort (a, b) ->
-              moment(a.time) - moment(b.time)
+            moment(a.time) - moment(b.time)
           message = tsv.stringify(messages) || '[None]'
           msg.send message

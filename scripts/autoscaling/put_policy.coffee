@@ -15,7 +15,7 @@ putPolicy = (msg, params, alarm_params) ->
   aws = require('../../aws.coffee').aws()
   autoscaling = new aws.AutoScaling({apiVersion: '2011-01-01'})
 
-  autoscaling.putScalingPolicy params, (err, res)->
+  autoscaling.putScalingPolicy params, (err, res) ->
     if err
       msg.send "PutScalingPolicyError: #{err}"
       return
@@ -25,7 +25,7 @@ putPolicy = (msg, params, alarm_params) ->
     alarm_params.AlarmActions.push(res.PolicyARN)
 
     cloudwatch = new aws.CloudWatch({apiVersion: '2010-08-01'})
-    cloudwatch.putMetricAlarm alarm_params, (err, res)->
+    cloudwatch.putMetricAlarm alarm_params, (err, res) ->
       if err
         msg.send "PutMetricAlarmError: #{err}"
         return
