@@ -11,7 +11,7 @@ fs   = require 'fs'
 cson = require 'cson'
 util = require 'util'
 
-get_arg_params = (arg) ->
+getArgParams = (arg) ->
   dry_run = if arg.match(/--dry-run/) then true else false
 
   image_id_capture = /--image_id=(.*?)( |$)/.exec(arg)
@@ -25,7 +25,7 @@ module.exports = (robot) ->
       msg.send "You cannot access this feature. Please contact with admin"
       return
 
-    arg_params = get_arg_params(msg.match[1])
+    arg_params = getArgParams(msg.match[1])
 
     dry_run    = arg_params.dry_run
     image_id   = arg_params.image_id
