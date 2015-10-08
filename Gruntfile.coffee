@@ -22,6 +22,15 @@ module.exports = (grunt) ->
         'coffeelint.json'
       ]
 
+    simplemocha:
+      options:
+        ui: 'bdd'
+        reporter: 'spec'
+        compilers: 'coffee:coffee-script'
+        ignoreLeaks: no
+      dist:
+        src: [ 'test/test_*.coffee' ]
+
     watch:
       options:
         interrupt: yes
@@ -37,7 +46,7 @@ module.exports = (grunt) ->
         tagName: 'v<%= version %>'
         commitMessage: 'Prepare to release <%= version %>.'
 
-  grunt.registerTask 'test',    [ 'jsonlint', 'coffeelint' ]
+  grunt.registerTask 'test',    [ 'jsonlint', 'coffeelint', 'simplemocha' ]
   grunt.registerTask 'default', [ 'test', 'watch' ]
 
   require 'coffee-errors'
