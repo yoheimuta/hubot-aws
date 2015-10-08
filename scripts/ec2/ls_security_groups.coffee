@@ -11,7 +11,7 @@ module.exports = (robot) ->
     aws = require('../../aws.coffee').aws()
     ec2 = new aws.EC2({apiVersion: '2014-10-01'})
 
-    ec2.describeSecurityGroups null, (err, res)->
+    ec2.describeSecurityGroups null, (err, res) ->
       if err
         msg.send "Error: #{err}"
       else

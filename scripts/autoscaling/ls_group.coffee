@@ -17,7 +17,7 @@ module.exports = (robot) ->
     aws = require('../../aws.coffee').aws()
     autoscaling = new aws.AutoScaling({apiVersion: '2011-01-01'})
 
-    autoscaling.describeAutoScalingGroups (if arg_name then { AutoScalingGroupNames: [arg_name] } else null), (err, res)->
+    autoscaling.describeAutoScalingGroups (if arg_name then { AutoScalingGroupNames: [arg_name] } else null), (err, res) ->
       if err
         msg.send "Error: #{err}"
       else

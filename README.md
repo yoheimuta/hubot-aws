@@ -1,6 +1,4 @@
-# hubot-aws
-
-[![NPM](https://nodei.co/npm/hubot-aws.png)](https://nodei.co/npm/hubot-aws/)
+# hubot-aws  [![npm version](https://badge.fury.io/js/hubot-aws.svg)](http://badge.fury.io/js/hubot-aws) [![Build Status](https://travis-ci.org/yoheimuta/hubot-aws.svg?branch=master)](https://travis-ci.org/yoheimuta/hubot-aws) [![Dependency Status](https://david-dm.org/yoheimuta/hubot-aws.svg)](https://david-dm.org/yoheimuta/hubot-aws)
 
 Hubot masters aws commands
 

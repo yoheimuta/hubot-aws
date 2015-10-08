@@ -19,7 +19,7 @@ module.exports = (robot) ->
     aws = require('../../aws.coffee').aws()
     autoscaling = new aws.AutoScaling({apiVersion: '2011-01-01'})
 
-    autoscaling.describePolicies (if group_name then { AutoScalingGroupName: group_name } else null), (err, res)->
+    autoscaling.describePolicies (if group_name then { AutoScalingGroupName: group_name } else null), (err, res) ->
       if err
         msg.send "Error: #{err}"
       else
@@ -49,7 +49,7 @@ module.exports = (robot) ->
 
             cloudwatch = new aws.CloudWatch({apiVersion: '2010-08-01'})
             for alarm in conf.Alarms
-              cloudwatch.describeAlarms { AlarmNames: [alarm.AlarmName] }, (err, res)->
+              cloudwatch.describeAlarms { AlarmNames: [alarm.AlarmName] }, (err, res) ->
                 if err
                   msg.send "DescribeAlarm: #{err}"
                 else
@@ -73,9 +73,9 @@ module.exports = (robot) ->
             next() if conf.Alarms.length == 0
 
           , (err) ->
-              if err
-                msg.send "async.each Error: #{err}"
-              else
-                message   = messages.join "\n"
-                message ||= '[None]'
-                msg.send message
+            if err
+              msg.send "async.each Error: #{err}"
+            else
+              message   = messages.join "\n"
+              message ||= '[None]'
+              msg.send message

@@ -14,7 +14,7 @@ module.exports = (robot) ->
     aws = require('../../aws.coffee').aws()
     s3  = new aws.S3({apiVersion: '2006-03-01'})
 
-    s3.listBuckets (err, res)->
+    s3.listBuckets (err, res) ->
       if err
         msg.send "Error: #{err}"
       else
@@ -26,6 +26,6 @@ module.exports = (robot) ->
           })
 
         messages.sort (a, b) ->
-            moment(a.time) - moment(b.time)
+          moment(a.time) - moment(b.time)
         message = tsv.stringify(messages) || '[None]'
         msg.send message

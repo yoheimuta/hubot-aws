@@ -15,7 +15,7 @@ create = (msg, params) ->
   aws = require('../../aws.coffee').aws()
   autoscaling = new aws.AutoScaling({apiVersion: '2011-01-01'})
 
-  autoscaling.createAutoScalingGroup params, (err, res)->
+  autoscaling.createAutoScalingGroup params, (err, res) ->
     if err
       msg.send "Error: #{err}"
     else

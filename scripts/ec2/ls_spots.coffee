@@ -16,7 +16,7 @@ module.exports = (robot) ->
     aws = require('../../aws.coffee').aws()
     ec2 = new aws.EC2({apiVersion: '2014-10-01'})
 
-    ec2.describeSpotInstanceRequests null, (err, res)->
+    ec2.describeSpotInstanceRequests null, (err, res) ->
       if err
         msg.send "SpotInstanceRequestError: #{err}"
       else
@@ -33,7 +33,7 @@ module.exports = (robot) ->
             spotPrice : ins.SpotPrice
           }
 
-          ec2.describeInstances {InstanceIds:[request.id]}, (err, res)->
+          ec2.describeInstances {InstanceIds:[request.id]}, (err, res) ->
             if err
               msg.send "DescribeInstancesError: #{err}"
             else
@@ -42,7 +42,7 @@ module.exports = (robot) ->
                 ins        = data.Instances[0]
                 request.ip = ins.PrivateIpAddress
 
-            similar_one = _.find messages, (one)-> return (one.type == request.type && one.az == request.az)
+            similar_one = _.find messages, (one) -> return (one.type == request.type && one.az == request.az)
             if similar_one
               request.price            = similar_one.price
               request.avg_latest_price = similar_one.avg_latest_price
@@ -63,7 +63,7 @@ module.exports = (robot) ->
                 history = res.SpotPriceHistory
                 request.price = history[0].SpotPrice
 
-                sum = _.reduce history, (memo, param)->
+                sum = _.reduce history, (memo, param) ->
                   return memo + (+param.SpotPrice)
                 , 0
 
@@ -73,10 +73,10 @@ module.exports = (robot) ->
               next()
 
         , (err) ->
-            if err
-              msg.send "async Error: #{err}"
-            else
-              messages.sort (a, b) ->
-                  moment(a.time) - moment(b.time)
-              message = tsv.stringify(messages)
-              msg.send message
+          if err
+            msg.send "async Error: #{err}"
+          else
+            messages.sort (a, b) ->
+              moment(a.time) - moment(b.time)
+            message = tsv.stringify(messages)
+            msg.send message

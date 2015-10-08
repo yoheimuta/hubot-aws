@@ -22,7 +22,7 @@ update = (msg, json) ->
   aws = require('../../aws.coffee').aws()
   autoscaling = new aws.AutoScaling({apiVersion: '2011-01-01'})
 
-  autoscaling.updateAutoScalingGroup json, (err, res)->
+  autoscaling.updateAutoScalingGroup json, (err, res) ->
     if err
       msg.send "Error: #{err}"
     else

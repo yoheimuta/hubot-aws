@@ -12,12 +12,12 @@ cson = require 'cson'
 util = require 'util'
 
 get_arg_params = (arg) ->
-    dry_run = if arg.match(/--dry-run/) then true else false
+  dry_run = if arg.match(/--dry-run/) then true else false
 
-    image_id_capture = /--image_id=(.*?)( |$)/.exec(arg)
-    image_id = if image_id_capture then image_id_capture[1] else null
+  image_id_capture = /--image_id=(.*?)( |$)/.exec(arg)
+  image_id = if image_id_capture then image_id_capture[1] else null
 
-    return { dry_run : dry_run, image_id: image_id }
+  return {dry_run: dry_run, image_id: image_id}
 
 module.exports = (robot) ->
   robot.respond /ec2 run(.*)$/i, (msg) ->
@@ -53,7 +53,7 @@ module.exports = (robot) ->
     aws = require('../../aws.coffee').aws()
     ec2 = new aws.EC2({apiVersion: '2014-10-01'})
 
-    ec2.runInstances params, (err, res)->
+    ec2.runInstances params, (err, res) ->
       if err
         msg.send "Error: #{err}"
       else

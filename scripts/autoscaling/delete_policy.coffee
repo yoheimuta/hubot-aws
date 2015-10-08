@@ -20,7 +20,7 @@ module.exports = (robot) ->
     aws = require('../../aws.coffee').aws()
     autoscaling = new aws.AutoScaling({apiVersion: '2011-01-01'})
 
-    autoscaling.deletePolicy { AutoScalingGroupName: group_name, PolicyName: policy_name}, (err, res)->
+    autoscaling.deletePolicy { AutoScalingGroupName: group_name, PolicyName: policy_name}, (err, res) ->
       if err
         msg.send "Error: #{err}"
       else

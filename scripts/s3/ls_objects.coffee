@@ -22,7 +22,7 @@ module.exports = (robot) ->
     aws = require('../../aws.coffee').aws()
     s3  = new aws.S3({apiVersion: '2006-03-01'})
 
-    s3.listObjects { Bucket: bucket, Delimiter: '/', Prefix: prefix, Marker: marker }, (err, res)->
+    s3.listObjects { Bucket: bucket, Delimiter: '/', Prefix: prefix, Marker: marker }, (err, res) ->
       if err
         msg.send "Error: #{err}"
       else
