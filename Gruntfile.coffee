@@ -32,6 +32,11 @@ module.exports = (grunt) ->
         ]
         tasks: [ 'test' ]
 
+    release:
+      options:
+        tagName: 'v<%= version %>'
+        commitMessage: 'Prepare to release <%= version %>.'
+
   grunt.registerTask 'test',    [ 'jsonlint', 'coffeelint' ]
   grunt.registerTask 'default', [ 'test', 'watch' ]
 
