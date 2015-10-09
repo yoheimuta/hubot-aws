@@ -1,0 +1,14 @@
+DryRun: false
+InstanceId: "i-***"
+Name: "hubot-test-instance"
+Description: ""
+NoReboot: true
+BlockDeviceMappings: [
+  {
+    DeviceName: "/dev/sda1"
+    Ebs:
+      VolumeSize: 10
+      DeleteOnTermination: true
+      VolumeType: "gp2"
+  }
+]
