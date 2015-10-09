@@ -77,6 +77,13 @@ hubot autoscaling update --name=[name] --min=[min] --dry-run - Try updating MinS
 hubot cloudwatch alarm delete --name=[alarm_name] - Delete the Alarm
 hubot cloudwatch alarm ls - Displays all Alarms
 hubot cloudwatch alarm ls --name=[alarm_name] - Details an Alarm
+hubot ec2 ami create - Create an ami
+hubot ec2 ami create --dry-run - Try creating an ami
+hubot ec2 ami create --instance_id=[instance_id] --name=[name] - Create an ami using custom id [and|or] name
+hubot ec2 ami deregister --ami_id=[ami_id] - Deregister an ami
+hubot ec2 ami deregister --ami_id=[ami_id] --dry-run - Try deregistering an ami
+hubot ec2 ami ls - Desplays all AMI(Images)
+hubot ec2 ami ls --owner=[owner] - Desplays owner's AMI(Images)
 hubot ec2 ls - Displays all Instances
 hubot ec2 ls --instance_id=[instance_id] - Details an Instance
 hubot ec2 run - Run an Instance
