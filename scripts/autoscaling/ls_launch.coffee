@@ -9,11 +9,18 @@ moment = require 'moment'
 util   = require 'util'
 tsv    = require 'tsv'
 
-module.exports = (robot) ->
-  robot.respond /autoscaling launch ls($| --name=)(.*)$/i, (msg) ->
-    arg_name = msg.match[2].trim() || ''
+getArgParams = (arg) ->
+  name_capture = /--name=(.*?)( |$)/.exec(arg)
+  name = if name_capture then name_capture[1] else ''
 
-    msg.send "Fetching #{arg_name}..."
+  return {name: name}
+
+module.exports = (robot) ->
+  robot.respond /autoscaling launch ls(.*)$/i, (msg) ->
+    arg_params = getArgParams(msg.match[1])
+    arg_name = arg_params.name
+
+    msg.send "Fetching #{arg_name||'all (name is not provided)'}..."
 
     aws = require('../../aws.coffee').aws()
     autoscaling = new aws.AutoScaling({apiVersion: '2011-01-01'})

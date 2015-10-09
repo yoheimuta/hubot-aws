@@ -8,11 +8,18 @@
 util   = require 'util'
 moment = require 'moment'
 
-module.exports = (robot) ->
-  robot.respond /cloudwatch alarm ls($| --name=)(.*)$/i, (msg) ->
-    alarm_name = msg.match[2].trim() || ''
+getArgParams = (arg) ->
+  name_capture = /--name=(.*?)( |$)/.exec(arg)
+  name = if name_capture then name_capture[1] else ''
 
-    msg.send "Fetching #{alarm_name}..."
+  return {name: name}
+
+module.exports = (robot) ->
+  robot.respond /cloudwatch alarm ls(.*)$/i, (msg) ->
+    arg_params = getArgParams(msg.match[1])
+    alarm_name = arg_params.name
+
+    msg.send "Fetching #{alarm_name||'all (name is not provided)'}..."
 
     aws = require('../../aws.coffee').aws()
     cloudwatch = new aws.CloudWatch({apiVersion: '2010-08-01'})

@@ -1,23 +1,34 @@
 # Description:
-#   Terminate ec2 instances
+#   Terminate ec2 instance
 #
 # Commands:
+#   hubot ec2 terminate --instance_id=[instance_id] --dry-run - Try terminating the Instance
 #   hubot ec2 terminate --instance_id=[instance_id] - Terminate the Instance
 
+getArgParams = (arg) ->
+  dry_run = if arg.match(/--dry-run/) then true else false
+
+  ins_id_capture = /--instance_id=(.*?)( |$)/.exec(arg)
+  ins_id = if ins_id_capture then ins_id_capture[1] else null
+
+  return {dry_run: dry_run, ins_id: ins_id}
+
 module.exports = (robot) ->
-  robot.respond /ec2 terminate --instance_id=(.*)$/i, (msg) ->
+  robot.respond /ec2 terminate(.*)$/i, (msg) ->
     unless require('../../auth.coffee').canAccess(robot, msg.envelope.user)
       msg.send "You cannot access this feature. Please contact with admin"
       return
 
-    ins_id = msg.match[1]
+    arg_params = getArgParams(msg.match[1])
+    ins_id  = arg_params.ins_id
+    dry_run = arg_params.dry_run
 
-    msg.send "Terminating #{ins_id}..."
+    msg.send "Terminating instance_id=#{ins_id}, dry-run=#{dry_run}..."
 
     aws = require('../../aws.coffee').aws()
     ec2 = new aws.EC2({apiVersion: '2014-10-01'})
 
-    ec2.terminateInstances { DryRun: false, InstanceIds: [ins_id] }, (err, res) ->
+    ec2.terminateInstances { DryRun: dry_run, InstanceIds: [ins_id] }, (err, res) ->
       if err
         msg.send "Error: #{err}"
       else
