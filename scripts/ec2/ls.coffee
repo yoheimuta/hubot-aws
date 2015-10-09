@@ -10,11 +10,18 @@ moment = require 'moment'
 util   = require 'util'
 tsv    = require 'tsv'
 
-module.exports = (robot) ->
-  robot.respond /ec2 ls($| --instance_id=)(.*)$/i, (msg) ->
-    ins_id = msg.match[2].trim() || ''
+getArgParams = (arg) ->
+  ins_id_capture = /--instance_id=(.*?)( |$)/.exec(arg)
+  ins_id = if ins_id_capture then ins_id_capture[1] else ''
 
-    msg.send "Fetching #{ins_id}..."
+  return {ins_id: ins_id}
+
+module.exports = (robot) ->
+  robot.respond /ec2 ls(.*)$/i, (msg) ->
+    arg_params = getArgParams(msg.match[1])
+    ins_id  = arg_params.ins_id
+
+    msg.send "Fetching #{ins_id||'all (instance_id is not provided)'}..."
 
     aws = require('../../aws.coffee').aws()
     ec2 = new aws.EC2({apiVersion: '2014-10-01'})

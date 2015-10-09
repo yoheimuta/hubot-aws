@@ -8,11 +8,18 @@
 util   = require 'util'
 tsv    = require 'tsv'
 
-module.exports = (robot) ->
-  robot.respond /autoscaling notification ls($| --group_name=)(.*)$/i, (msg) ->
-    group_name = msg.match[2].trim() || ''
+getArgParams = (arg) ->
+  group_name_capture = /--group_name=(.*?)( |$)/.exec(arg)
+  group_name = if group_name_capture then group_name_capture[1] else ''
 
-    msg.send "Fetching #{group_name}..."
+  return {group_name: group_name}
+
+module.exports = (robot) ->
+  robot.respond /autoscaling notification ls(.*)$/i, (msg) ->
+    arg_params = getArgParams(msg.match[1])
+    group_name = arg_params.group_name
+
+    msg.send "Fetching #{group_name||'all (group_name is not provided)'}..."
 
     aws = require('../../aws.coffee').aws()
     autoscaling = new aws.AutoScaling({apiVersion: '2011-01-01'})
