@@ -1,12 +1,36 @@
 # Change Log
 
-## [v0.0.5](https://github.com/yoheimuta/hubot-aws/tree/v0.0.5) (2015-07-01)
+## [v0.1.0](https://github.com/yoheimuta/hubot-aws/tree/v0.1.0) (2015-10-09)
 
-[Full Changelog](https://github.com/yoheimuta/hubot-aws/compare/v0.0.4...v0.0.5)
+[Full Changelog](https://github.com/yoheimuta/hubot-aws/compare/v0.0.5...v0.1.0)
+
+**Implemented enhancements:**
+
+- Describe and delete images \(AMI\) [\#20](https://github.com/yoheimuta/hubot-aws/issues/20)
+
+- Added tests and CI [\#19](https://github.com/yoheimuta/hubot-aws/issues/19)
+
+- Fixed function name of get\_arg\_params from snake case to camel case [\#16](https://github.com/yoheimuta/hubot-aws/issues/16)
+
+- Fixed the command match logic to more flexible [\#1](https://github.com/yoheimuta/hubot-aws/issues/1)
 
 **Fixed bugs:**
 
 - typo: hubot ec2 run --image-id=\[ami-id\] [\#17](https://github.com/yoheimuta/hubot-aws/issues/17)
+
+**Merged pull requests:**
+
+- \(refs \#1\)Changed how to capture arg params [\#24](https://github.com/yoheimuta/hubot-aws/pull/24) ([yoheimuta](https://github.com/yoheimuta))
+
+- \(refs \#20\)Support ami api to create, deregister and ls [\#23](https://github.com/yoheimuta/hubot-aws/pull/23) ([yoheimuta](https://github.com/yoheimuta))
+
+- \(refs \#16\)Fixed sneak case function names [\#22](https://github.com/yoheimuta/hubot-aws/pull/22) ([yoheimuta](https://github.com/yoheimuta))
+
+- Introduced grunt/19 [\#21](https://github.com/yoheimuta/hubot-aws/pull/21) ([yoheimuta](https://github.com/yoheimuta))
+
+## [v0.0.5](https://github.com/yoheimuta/hubot-aws/tree/v0.0.5) (2015-07-01)
+
+[Full Changelog](https://github.com/yoheimuta/hubot-aws/compare/v0.0.4...v0.0.5)
 
 **Merged pull requests:**
 
