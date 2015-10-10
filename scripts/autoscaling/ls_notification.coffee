@@ -19,7 +19,7 @@ module.exports = (robot) ->
     arg_params = getArgParams(msg.match[1])
     group_name = arg_params.group_name
 
-    msg.send "Fetching #{group_name||'all (group_name is not provided)'}..."
+    msg.send "Fetching #{group_name || 'all (group_name is not provided)'}..."
 
     aws = require('../../aws.coffee').aws()
     autoscaling = new aws.AutoScaling({apiVersion: '2011-01-01'})

@@ -4,7 +4,7 @@
 # Commands:
 #   hubot ec2 ami create --dry-run - Try creating an ami
 #   hubot ec2 ami create - Create an ami
-#   hubot ec2 ami create --instance_id=[instance_id] --name=[name] - Create an ami using custom id [and|or] name
+#   hubot ec2 ami create --instance_id=[instance_id] --name=[name] --config_path=[filepath] - Create an ami using custom id, name and config_path
 
 fs   = require 'fs'
 cson = require 'cson'
@@ -19,7 +19,10 @@ getArgParams = (arg) ->
   name_capture = /--name=(.*?)( |$)/.exec(arg)
   name = if name_capture then name_capture[1] else null
 
-  return {dry_run: dry_run, ins_id: ins_id, name: name}
+  config_path_capture = /--config_path=(.*?)( |$)/.exec(arg)
+  config_path = if config_path_capture then config_path_capture[1] else null
+
+  return {dry_run: dry_run, ins_id: ins_id, name: name, config_path: config_path}
 
 module.exports = (robot) ->
   robot.respond /ec2 ami create(.*)$/i, (msg) ->
@@ -29,26 +32,22 @@ module.exports = (robot) ->
 
     arg_params = getArgParams(msg.match[1])
 
-    ins_id  = arg_params.ins_id
-    name    = arg_params.name
-    dry_run = arg_params.dry_run
+    ins_id      = arg_params.ins_id
+    name        = arg_params.name
+    config_path = arg_params.config_path
+    dry_run     = arg_params.dry_run
 
-    msg.send "Requesting instance_id=#{ins_id}, name=#{name}, dry-run=#{dry_run}..."
-
-    config_path = process.env.HUBOT_AWS_EC2_CREATE_AMI_CONFIG
+    config_path ||= process.env.HUBOT_AWS_EC2_CREATE_AMI_CONFIG
     unless fs.existsSync config_path
       msg.send "NOT FOUND HUBOT_AWS_EC2_CREATE_AMI_CONFIG"
       return
+
+    msg.send "Requesting instance_id=#{ins_id}, name=#{name}, config_path=#{config_path}, dry-run=#{dry_run}..."
 
     params = cson.parseCSONFile config_path
 
     params.InstanceId = ins_id if ins_id
     params.Name = name if name
-
-    userdata_path = process.env.HUBOT_AWS_EC2_RUN_USERDATA_PATH
-    if fs.existsSync userdata_path
-      init_file = fs.readFileSync userdata_path, 'utf-8'
-      params.UserData = new Buffer(init_file).toString('base64')
 
     if dry_run
       msg.send util.inspect(params, false, null)
