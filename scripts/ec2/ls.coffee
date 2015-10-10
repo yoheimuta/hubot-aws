@@ -21,7 +21,7 @@ module.exports = (robot) ->
     arg_params = getArgParams(msg.match[1])
     ins_id  = arg_params.ins_id
 
-    msg.send "Fetching #{ins_id||'all (instance_id is not provided)'}..."
+    msg.send "Fetching #{ins_id || 'all (instance_id is not provided)'}..."
 
     aws = require('../../aws.coffee').aws()
     ec2 = new aws.EC2({apiVersion: '2014-10-01'})

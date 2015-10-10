@@ -19,7 +19,7 @@ module.exports = (robot) ->
     arg_params = getArgParams(msg.match[1])
     arg_name = arg_params.name
 
-    msg.send "Fetching #{arg_name||'all (name is not provided)'}..."
+    msg.send "Fetching #{arg_name || 'all (name is not provided)'}..."
 
     aws = require('../../aws.coffee').aws()
     autoscaling = new aws.AutoScaling({apiVersion: '2011-01-01'})
