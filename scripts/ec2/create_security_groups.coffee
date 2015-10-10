@@ -2,8 +2,13 @@
 #   Create ec2 security groups
 #
 # Commands:
-#   hubot ec2 sg create --vpc_id=[vpc_id] --group_name=[group_name] --desc=[desc] --dry-run - Try creating a SecurityGroup
-#   hubot ec2 sg create --vpc_id=[vpc_id] --group_name=[group_name] --desc=[desc] - Create a SecurityGroup
+#   hubot ec2 sg create --group_name=[group_name] --desc=[desc] --vpc_id=[vpc_id] - Create a SecurityGroup
+#
+# Notes:
+#   --group_name=*** : [required] The name of the security group.
+#   --desc=***       : [required] A description for the security group.
+#   --vpc_id=***     : [optional] [EC2-VPC] The ID of the VPC
+#   --dry-run        : [optional] Checks whether the api request is right. Recommend to set before applying to real asset.
 
 util = require 'util'
 

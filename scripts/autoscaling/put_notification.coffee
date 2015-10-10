@@ -1,9 +1,16 @@
 # Description:
 #   Put autoscaling notifications
 #
+# Configurations:
+#   HUBOT_AWS_AS_NOTIFICATION: [optional] Path to csonfile to be performs to add a notification based on. Required a config_path argument or this.
+#
 # Commands:
-#   hubot autoscaling notification put --group_name=[group_name] --dry-run - Try putting an AutoScaling Notifications
-#   hubot autoscaling notification put --group_name=[group_name] --config_path=[filepath] - Put an AutoScaling Notifications
+#   hubot autoscaling notification put - Put an AutoScaling Notifications
+#
+# Notes:
+#   --group_name=***        : [optional] The name of the group. If omit it, the AutoScalingGroupName of config is used.
+#   --config_path=***       : [optional] Config file path. If omit it, HUBOT_AWS_AS_NOTIFICATION is referred to.
+#   --dry-run               : [optional] Checks whether the api request is right. Recommend to set before applying to real asset.
 
 fs   = require 'fs'
 cson = require 'cson'

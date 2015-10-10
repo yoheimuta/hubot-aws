@@ -1,10 +1,19 @@
 # Description:
-#   Create autoscaling launch configurations
+#   Create autoscaling launch configuration
+#
+# Configurations:
+#   HUBOT_AWS_AS_LAUNCH_CONF_CONFIG: [optional] Path to csonfile to be performs service operation based on. Required a config_path argument or this.
+#   HUBOT_AWS_AS_LAUNCH_CONF_USERDATA_PATH: [optional] Path to csonfile to be performs service operation based on.
 #
 # Commands:
-#   hubot autoscaling launch create --name=[launch_configuration_name] --dry-run - Try creating an AutoScaling LaunchConfiguration
-#   hubot autoscaling launch create --name=[launch_configuration_name] - Create an AutoScaling LaunchConfiguration
-#   hubot autoscaling launch create --name=[launch_configuration_name] --image_id=[ami-id] --config_path=[filepath] --userdata_path=[filepath] - Create an AutoScaling LaunchConfiguration
+#   hubot autoscaling launch create - Create an AutoScaling LaunchConfiguration
+#
+# Notes:
+#   --name=***          : [optional] The name of the launch configuration. If omit it, the LaunchConfigurationName of config is used.
+#   --image_id=***      : [optional] The ID of the AMI to use to launch your EC2 instances. If omit it, the ImageId of config is used.
+#   --config_path=***   : [optional] Config file path. If omit it, HUBOT_AWS_AS_LAUNCH_CONF_CONFIG is referred to.
+#   --userdata_path=*** : [optional] Userdata file path to be not encoded yet. If omit it, HUBOT_AWS_AS_LAUNCH_CONF_USERDATA_PATH is referred to.
+#   --dry-run           : [optional] Checks whether the api request is right. Recommend to set before applying to real asset.
 
 fs   = require 'fs'
 cson = require 'cson'
@@ -48,7 +57,7 @@ module.exports = (robot) ->
 
     params = cson.parseCSONFile config_path
 
-    params.LaunchConfigurationName = name
+    params.LaunchConfigurationName = name if name
     params.ImageId = image_id if image_id
 
     userdata_path ||= process.env.HUBOT_AWS_AS_LAUNCH_CONF_USERDATA_PATH

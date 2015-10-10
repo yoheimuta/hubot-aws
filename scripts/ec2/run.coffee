@@ -1,10 +1,18 @@
 # Description:
-#   Run ec2 instances
+#   Run ec2 instance
+#
+# Configurations:
+#   HUBOT_AWS_EC2_RUN_CONFIG: [optional] Path to csonfile to be performs service operation based on. Required a config_path argument or this.
+#   HUBOT_AWS_EC2_RUN_USERDATA_PATH: [optional] Path to userdata file.
 #
 # Commands:
-#   hubot ec2 run --dry-run - Try running an Instance
 #   hubot ec2 run - Run an Instance
-#   hubot ec2 run --image_id=[ami-id] --config_path=[filepath] --userdata_path=[filepath] - Run an Instance with image_id, config file path and userdata file path
+#
+# Notes:
+#   --image_id=***      : [optional] The ID of the AMI. If omit it, the ImageId of config is used
+#   --config_path=***   : [optional] Config file path. If omit it, HUBOT_AWS_EC2_RUN_CONFIG is referred to.
+#   --userdata_path=*** : [optional] Userdata file path to be not encoded yet. If omit it, HUBOT_AWS_EC2_RUN_USERDATA_PATH is referred to.
+#   --dry-run           : [optional] Checks whether the api request is right. Recommend to set before applying to real asset.
 
 fs   = require 'fs'
 cson = require 'cson'

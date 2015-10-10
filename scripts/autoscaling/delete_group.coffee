@@ -4,6 +4,10 @@
 # Commands:
 #   hubot autoscaling delete --group_name=[group_name] - Delete the AutoScaling Group
 #   hubot autoscaling delete --group_name=[group_name] --force - Delete the AutoScaling Group with live instances
+#
+# Notes:
+#   --group_name=*** : [required] One name of the group to be deleted.
+#   --force          : [optional] Specifies that the group will be deleted along with all instances associated with the group, without waiting for all instances to be terminated.
 
 util = require 'util'
 
