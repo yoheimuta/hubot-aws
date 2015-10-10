@@ -38,17 +38,13 @@ export HUBOT_AWS_DEBUG="1"
 
 ## Commands
 
+See [scripts/**.coffee](https://github.com/yoheimuta/hubot-aws/tree/master/scripts) for full documentation.
+
 ```ruby
-hubot autoscaling create --name=[group_name] --launch_name=[launch_configuration_name] - Create an AutoScaling Group
-hubot autoscaling create --name=[group_name] --launch_name=[launch_configuration_name] --capacity=[number] - Create an AutoScaling Group with desiredCapacity
-hubot autoscaling create --name=[group_name] --launch_name=[launch_configuration_name] --capacity=[number] --dry-run - Try creating an AutoScaling Group with desiredCapacity
-hubot autoscaling create --name=[group_name] --launch_name=[launch_configuration_name] --dry-run - Try creating an AutoScaling Group
+hubot autoscaling create - Create an AutoScaling Group
 hubot autoscaling delete --group_name=[group_name] - Delete the AutoScaling Group
 hubot autoscaling delete --group_name=[group_name] --force - Delete the AutoScaling Group with live instances
-hubot autoscaling launch create --name=[launch_configuration_name] - Create an AutoScaling LaunchConfiguration
-hubot autoscaling launch create --name=[launch_configuration_name] --dry-run - Try creating an AutoScaling LaunchConfiguration
-hubot autoscaling launch create --name=[launch_configuration_name] --image_id=[ami-id] --dry-run - Try creating an AutoScaling LaunchConfiguration with image_id
-hubot autoscaling launch create --name=[launch_configuration_name] --image_id=[ami-id] - Create an AutoScaling LaunchConfiguration with image_id
+hubot autoscaling launch create - Create an AutoScaling LaunchConfiguration
 hubot autoscaling launch delete --name=[launch_configuration_name] - Delete the AutoScaling LaunchConfiguration
 hubot autoscaling launch ls - Displays all AutoScaling LaunchConfigurations
 hubot autoscaling launch ls --name=[launch_configuration_name] - Details an Autoscaling LaunchConfiguration
@@ -57,15 +53,12 @@ hubot autoscaling ls --name=[group_name] - Details an Autoscaling Group
 hubot autoscaling notification delete --group_name=[group_name] --arn=[topic_arn] - Delete the AutoScaling Notificatoin
 hubot autoscaling notification ls - Displays all AutoScaling NotificationConfigurations
 hubot autoscaling notification ls --group_name=[group_name] - Details an Autoscaling NotificationConfiguration
-hubot autoscaling notification put --group_name=[group_name]   - Put an AutoScaling Notifications
-hubot autoscaling notification put --group_name=[group_name] --dry-run    - Try putting an AutoScaling Notifications
-hubot autoscaling policy delete --group_name=[group_name] --policy_name=[policy_name] - Delete the AutoScaling Policy
+hubot autoscaling notification put - Put an AutoScaling Notifications
+hubot autoscaling policy delete --policy_name=[policy_name] - Delete the AutoScaling Policy
 hubot autoscaling policy ls - Displays all AutoScaling Policies
 hubot autoscaling policy ls --group_name=[group_name] - Details an Autoscaling Policy
-hubot autoscaling policy put --add --group_name=[group_name]    - Put an AutoScaling ScaleOut Policy
-hubot autoscaling policy put --add --group_name=[group_name] --dry-run    - Try putting an AutoScaling ScaleOut Policy
-hubot autoscaling policy put --remove --group_name=[group_name] - Put an AutoScaling ScaleIn Policy
-hubot autoscaling policy put --remove --group_name=[group_name] --dry-run - Try putting an AutoScaling ScaleIn Policy
+hubot autoscaling policy put --add - Put an AutoScaling ScaleOut Policy
+hubot autoscaling policy put --remove - Put an AutoScaling ScaleIn Policy
 hubot autoscaling update --json=[json] - Update the AutoScaling Group
 hubot autoscaling update --json=[json] --dry-run - Try updating the AutoScaling Group
 hubot autoscaling update --name=[name] --desired=[desired] - Update DesiredCapacity the AutoScaling Group
@@ -77,9 +70,7 @@ hubot autoscaling update --name=[name] --min=[min] --dry-run - Try updating MinS
 hubot cloudwatch alarm delete --name=[alarm_name] - Delete the Alarm
 hubot cloudwatch alarm ls - Displays all Alarms
 hubot cloudwatch alarm ls --name=[alarm_name] - Details an Alarm
-hubot ec2 ami create - Create an ami
-hubot ec2 ami create --dry-run - Try creating an ami
-hubot ec2 ami create --instance_id=[instance_id] --name=[name] - Create an ami using custom id [and|or] name
+hubot ec2 ami create - Create an ami.
 hubot ec2 ami deregister --ami_id=[ami_id] - Deregister an ami
 hubot ec2 ami deregister --ami_id=[ami_id] --dry-run - Try deregistering an ami
 hubot ec2 ami ls - Desplays all AMI(Images)
@@ -87,11 +78,7 @@ hubot ec2 ami ls --owner=[owner] - Desplays owner's AMI(Images)
 hubot ec2 ls - Displays all Instances
 hubot ec2 ls --instance_id=[instance_id] - Details an Instance
 hubot ec2 run - Run an Instance
-hubot ec2 run --dry-run - Try running an Instance
-hubot ec2 run --image_id=[ami-id] --dry-run - Try running an Instance with image_id
-hubot ec2 run --image_id=[ami-id] - Run an Instance with image_id
-hubot ec2 sg create --vpc_id=[vpc_id] --group_name=[group_name] --desc=[desc] - Create a SecurityGroup
-hubot ec2 sg create --vpc_id=[vpc_id] --group_name=[group_name] --desc=[desc] --dry-run - Try creating a SecurityGroup
+hubot ec2 sg create --group_name=[group_name] --desc=[desc] --vpc_id=[vpc_id] - Create a SecurityGroup
 hubot ec2 sg delete --group_id=[group_id] - Delete the SecurityGroup
 hubot ec2 sg ls - Desplays all SecurityGroups
 hubot ec2 spot ls - Displays all SpotInstances
@@ -116,6 +103,7 @@ export HUBOT_AWS_DEBUG="1"
 export HUBOT_AWS_CAN_ACCESS_ROLE="tech"
 export HUBOT_AWS_EC2_RUN_CONFIG="files/aws/ec2/run/app.cson"
 export HUBOT_AWS_EC2_RUN_USERDATA_PATH="files/aws/ec2/run/initfile"
+export HUBOT_AWS_EC2_CREATE_AMI_CONFIG="files/aws/ec2/create_ami/app.cson"
 export HUBOT_AWS_AS_LAUNCH_CONF_CONFIG="files/aws/autoscaling/create_launch_configuration/app.cson"
 export HUBOT_AWS_AS_LAUNCH_CONF_USERDATA_PATH="files/aws/autoscaling/create_launch_configuration/initfile"
 export HUBOT_AWS_AS_GROUP_CONFIG="files/aws/autoscaling/create_group/app.cson"
@@ -129,6 +117,34 @@ export HUBOT_AWS_CW_ALARM_REMOVE="files/aws/cloudwatch/put_metric_alarm/remove/a
 You can build your own configurations by referring to the [example files](https://github.com/yoheimuta/hubot-aws/tree/master/example).
 
 ## Examples
+
+### EC2
+
+hubot ec2 ls - Displays all Instances
+
+```ruby
+hubot> hubot ec2 ls
+Fetching ...
+hubot> time     state   id      image   az      subnet  type    ip      name
+2015-04-17 17:02:27+09:00       running i-25588ed0      ami-AAA    ap-northeast-1c subnet-AAA t2.micro        10.0.2.125      app-autoscaling-ondemand
+2015-04-17 17:05:40+09:00       running i-f6469003      ami-BBB    ap-northeast-1c subnet-BBB t2.micro        10.0.2.146      app-autoscaling
+```
+
+hubot ec2 run - Run an Instance
+
+```ruby
+hubot> hubot ec2 run
+Requesting dry-run=false...
+hubot> pending  i-e23ce817      t2.micro       172.31.19.69    undefined
+```
+
+hubot ec2 terminate --instance_id=[instance_id] - Terminate the Instance
+
+```ruby
+hubot> hubot ec2 terminate --instance_id=i-e23ce817
+Terminating i-e23ce817...
+hubot> i-e23ce817    shutting-down
+```
 
 ### AutoScaling
 
@@ -256,34 +272,6 @@ dimension.Name    dimension.Value
 
 2014-12-19 12:15:07+09:00    AWS/EC2    CPUUtilization    Average    30    21600    LessThanOrEqualToThreshold    awsec2-app-autoscaling-20141219-High-CPU-Utilization
     AutoScalingGroupName    app-autoscaling-20141219
-```
-
-### EC2
-
-hubot ec2 ls - Displays all Instances
-
-```ruby
-hubot> hubot ec2 ls
-Fetching ...
-hubot> time     state   id      image   az      subnet  type    ip      name
-2015-04-17 17:02:27+09:00       running i-25588ed0      ami-AAA    ap-northeast-1c subnet-AAA t2.micro        10.0.2.125      app-autoscaling-ondemand
-2015-04-17 17:05:40+09:00       running i-f6469003      ami-BBB    ap-northeast-1c subnet-BBB t2.micro        10.0.2.146      app-autoscaling
-```
-
-hubot ec2 run - Run an Instance
-
-```ruby
-hubot> hubot ec2 run
-Requesting dry-run=false...
-hubot> pending  i-e23ce817      t2.micro       172.31.19.69    undefined
-```
-
-hubot ec2 terminate --instance_id=[instance_id] - Terminate the Instance
-
-```ruby
-hubot> hubot ec2 terminate --instance_id=i-e23ce817
-Terminating i-e23ce817...
-hubot> i-e23ce817    shutting-down
 ```
 
 ### S3

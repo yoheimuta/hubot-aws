@@ -1,11 +1,18 @@
 # Description:
 #   Create autoscaling group
 #
+# Configurations:
+#   HUBOT_AWS_AS_GROUP_CONFIG: [optional] Path to csonfile to be performs service operation based on. Required a config_path argument or this.
+#
 # Commands:
-#   hubot autoscaling create --name=[group_name] --launch_name=[launch_configuration_name] --dry-run - Try creating an AutoScaling Group
-#   hubot autoscaling create --name=[group_name] --launch_name=[launch_configuration_name] - Create an AutoScaling Group
-#   hubot autoscaling create --name=[group_name] --launch_name=[launch_configuration_name] --capacity=[number] --dry-run - Try creating an AutoScaling Group with desiredCapacity
-#   hubot autoscaling create --name=[group_name] --launch_name=[launch_configuration_name] --capacity=[number] - Create an AutoScaling Group with desiredCapacity
+#   hubot autoscaling create - Create an AutoScaling Group
+#
+# Notes:
+#   --name=***        : [optional] The name of the group. If omit it, the AutoScalingGroupName of config is used.
+#   --launch_name=*** : [optional] The name of the launch configuration. If omit it, the LaunchConfigurationName of config is used.
+#   --capacity=***    : [optional] The size of the group to be applied to min, max and desired. If omit it, each MinSize/MaxSize/DesiredCapacity of config is used.
+#   --config_path=*** : [optional] Config file path. If omit it, HUBOT_AWS_AS_GROUP_CONFIG is referred to.
+#   --dry-run         : [optional] Checks whether the api request is right. Recommend to set before applying to real asset.
 
 fs   = require 'fs'
 cson = require 'cson'

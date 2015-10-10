@@ -1,11 +1,23 @@
 # Description:
 #   Put autoscaling scaling policy
 #
+# Configurations:
+#   HUBOT_AWS_AS_POLICY_ADD    : [optional] Path to csonfile to be performs to add a scaleout policy based on. Required a config_path argument or this.
+#   HUBOT_AWS_AS_POLICY_REMOVE : [optional] Path to csonfile to be performs to add a scalein policy based on. Required a config_path argument or this.
+#   HUBOT_AWS_CW_ALARM_ADD     : [optional] Path to csonfile to be performs to add a scaleout alarm based on.
+#   HUBOT_AWS_CW_ALARM_REMOVE  : [optional] Path to csonfile to be performs to add a scalein alarm based on.
+#
 # Commands:
-#   hubot autoscaling policy put --add --group_name=[group_name] - Put an AutoScaling ScaleOut Policy
-#   hubot autoscaling policy put --add --group_name=[group_name] --config_path=[filepath] --alarm_config_path=[filepath] --dry-run - Put an AutoScaling ScaleOut Policy
-#   hubot autoscaling policy put --remove --group_name=[group_name] - Put an AutoScaling ScaleIn Policy
-#   hubot autoscaling policy put --remove --group_name=[group_name] --config_path=[filepath] --alarm_config_path=[filepath] --dry-run - Put an AutoScaling ScaleIn Policy
+#   hubot autoscaling policy put --add - Put an AutoScaling ScaleOut Policy
+#   hubot autoscaling policy put --remove - Put an AutoScaling ScaleIn Policy
+#
+# Notes:
+#   --add                   : [optional] The flag to add a scaleout policy. Required --add or --remove.
+#   --remove                : [optional] The flag to add a scalein policy. Required --add or --remove.
+#   --group_name=***        : [optional] The name of the group. If omit it, the AutoScalingGroupName of config is used.
+#   --config_path=***       : [optional] Config file path. If omit it, HUBOT_AWS_AS_POLICY_ADD or HUBOT_AWS_AS_POLICY_REMOVE is referred to.
+#   --alarm_config_path=*** : [optional] Userdata file path to be not encoded yet. If omit it, HUBOT_AWS_CW_ALARM_ADD or HUBOT_AWS_CW_ALARM_REMOVE is referred to.
+#   --dry-run               : [optional] Checks whether the api request is right. Recommend to set before applying to real asset.
 
 fs   = require 'fs'
 cson = require 'cson'
@@ -49,7 +61,7 @@ module.exports = (robot) ->
 
     config_path ||= if add_flag then process.env.HUBOT_AWS_AS_POLICY_ADD else process.env.HUBOT_AWS_AS_POLICY_REMOVE
     unless fs.existsSync config_path
-      msg.send "NOT FOUND HUBOT_AWS_AS_POLICY_ADD"
+      msg.send "NOT FOUND HUBOT_AWS_AS_POLICY_#{if add_flag then 'ADD' else 'REMOVE'}"
       return
     params = cson.parseCSONFile config_path
     params.AutoScalingGroupName = group_name

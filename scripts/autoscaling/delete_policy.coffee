@@ -2,7 +2,11 @@
 #   Delete an autoscaling policy
 #
 # Commands:
-#   hubot autoscaling policy delete --group_name=[group_name] --policy_name=[policy_name] - Delete the AutoScaling Policy
+#   hubot autoscaling policy delete --policy_name=[policy_name] - Delete the AutoScaling Policy
+#
+# Notes:
+#   --policy_name=*** : [required] The name or Amazon Resource Name (ARN) of the policy.
+#   --group_name=***  : [optional] The name of the Auto Scaling group.
 
 util = require 'util'
 

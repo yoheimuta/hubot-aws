@@ -3,6 +3,10 @@
 #
 # Commands:
 #   hubot autoscaling notification delete --group_name=[group_name] --arn=[topic_arn] - Delete the AutoScaling Notificatoin
+#
+# Notes:
+#   --group_name=*** : [required] The name of the Auto Scaling group.
+#   --arn=***        : [required] The Amazon Resource Name (ARN) of the Amazon Simple Notification Service (SNS) topic.
 
 util = require 'util'
 

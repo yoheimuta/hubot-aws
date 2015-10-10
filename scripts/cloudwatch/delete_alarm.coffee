@@ -4,6 +4,9 @@
 # Commands:
 #   hubot cloudwatch alarm delete --name=[alarm_name] - Delete the Alarm
 #
+# Notes:
+#   --name=*** : [required] One alarm to be deleted.
+
 util = require 'util'
 
 module.exports = (robot) ->

@@ -3,6 +3,9 @@
 #
 # Commands:
 #   hubot autoscaling launch delete --name=[launch_configuration_name] - Delete the AutoScaling LaunchConfiguration
+#
+# Notes:
+#   --name=*** : [required] One name of the launch configuration to be deleted.
 
 fs   = require 'fs'
 cson = require 'cson'

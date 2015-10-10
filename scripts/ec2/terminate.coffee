@@ -2,8 +2,11 @@
 #   Terminate ec2 instance
 #
 # Commands:
-#   hubot ec2 terminate --instance_id=[instance_id] --dry-run - Try terminating the Instance
 #   hubot ec2 terminate --instance_id=[instance_id] - Terminate the Instance
+#
+# Notes:
+#   --instance_id=***   : [required] One instance ID.
+#   --dry-run           : [optional] Checks whether the api request is right. Recommend to set before applying to real asset.
 
 getArgParams = (arg) ->
   dry_run = if arg.match(/--dry-run/) then true else false
