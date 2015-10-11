@@ -1,0 +1,33 @@
+{
+  "MinSize": 1,
+  "MaxSize": 10,
+  "DesiredCapacity": 5,
+  "DefaultCooldown": 300,
+  "AvailabilityZones": [
+    "ap-northeast-1a"
+  ],
+  "LoadBalancerNames": [
+    "your-elb"
+  ],
+  "HealthCheckType": "ELB",
+  "HealthCheckGracePeriod": 300,
+  "VPCZoneIdentifier": "subnet-your",
+  "Tags": [
+    {
+      "ResourceType": "auto-scaling-group",
+      "Key": "Name",
+      "Value": "app-autoscaling",
+      "PropagateAtLaunch": true
+    },
+    {
+      "ResourceType": "auto-scaling-group",
+      "Key": "role",
+      "Value": "app",
+      "PropagateAtLaunch": true
+    }
+  ],
+  "TerminationPolicies": [
+    "OldestInstance",
+    "ClosestToNextInstanceHour"
+  ]
+}
