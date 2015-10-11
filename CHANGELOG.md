@@ -1,5 +1,33 @@
 # Change Log
 
+## [v0.2.0](https://github.com/yoheimuta/hubot-aws/tree/v0.2.0) (2015-10-11)
+
+[Full Changelog](https://github.com/yoheimuta/hubot-aws/compare/v0.1.0...v0.2.0)
+
+**Implemented enhancements:**
+
+- Enable to create tags when hubot ec2 run [\#28](https://github.com/yoheimuta/hubot-aws/issues/28)
+
+- Add commands to control EC2 tags [\#27](https://github.com/yoheimuta/hubot-aws/issues/27)
+
+- Enable to pass a config file path [\#26](https://github.com/yoheimuta/hubot-aws/issues/26)
+
+- Support json as well as cson [\#25](https://github.com/yoheimuta/hubot-aws/issues/25)
+
+**Closed issues:**
+
+- Make easy to read help and README [\#29](https://github.com/yoheimuta/hubot-aws/issues/29)
+
+**Merged pull requests:**
+
+- Added command of ec2 tag \[ls|create|delete\] [\#33](https://github.com/yoheimuta/hubot-aws/pull/33) ([yoheimuta](https://github.com/yoheimuta))
+
+- Added example json files [\#32](https://github.com/yoheimuta/hubot-aws/pull/32) ([yoheimuta](https://github.com/yoheimuta))
+
+- Make easy to read full spec in each file and README [\#31](https://github.com/yoheimuta/hubot-aws/pull/31) ([yoheimuta](https://github.com/yoheimuta))
+
+- Enabled to pass configpath arg/26 [\#30](https://github.com/yoheimuta/hubot-aws/pull/30) ([yoheimuta](https://github.com/yoheimuta))
+
 ## [v0.1.0](https://github.com/yoheimuta/hubot-aws/tree/v0.1.0) (2015-10-09)
 
 [Full Changelog](https://github.com/yoheimuta/hubot-aws/compare/v0.0.5...v0.1.0)
