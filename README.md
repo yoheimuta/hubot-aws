@@ -70,11 +70,9 @@ hubot autoscaling update --name=[name] --min=[min] --dry-run - Try updating MinS
 hubot cloudwatch alarm delete --name=[alarm_name] - Delete the Alarm
 hubot cloudwatch alarm ls - Displays all Alarms
 hubot cloudwatch alarm ls --name=[alarm_name] - Details an Alarm
-hubot ec2 ami create - Create an ami.
-hubot ec2 ami deregister --ami_id=[ami_id] - Deregister an ami
-hubot ec2 ami deregister --ami_id=[ami_id] --dry-run - Try deregistering an ami
+hubot ec2 ami create --instance_id=*** - Create an ami.
+hubot ec2 ami deregister --ami_id=[ami_id] - Deregisters the specified AMI
 hubot ec2 ami ls - Desplays all AMI(Images)
-hubot ec2 ami ls --owner=[owner] - Desplays owner's AMI(Images)
 hubot ec2 ls - Displays all Instances
 hubot ec2 ls --instance_id=[instance_id] - Details an Instance
 hubot ec2 run - Run an Instance
@@ -82,6 +80,9 @@ hubot ec2 sg create --group_name=[group_name] --desc=[desc] --vpc_id=[vpc_id] - 
 hubot ec2 sg delete --group_id=[group_id] - Delete the SecurityGroup
 hubot ec2 sg ls - Desplays all SecurityGroups
 hubot ec2 spot ls - Displays all SpotInstances
+hubot ec2 tag create --resource_id=*** --tag_key=*** --tag_value=*** - Create a tag.
+hubot ec2 tag delete --resource_id=*** - Deletes the specified set of tags
+hubot ec2 tag ls - Desplays all tags
 hubot ec2 terminate --instance_id=[instance_id] - Terminate the Instance
 hubot s3 ls - Displays all S3 buckets
 hubot s3 ls --bucket_name=[bucket-name] - Displays all objects

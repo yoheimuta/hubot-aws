@@ -1,9 +1,12 @@
 # Description:
-#   Deregister ec2 ami
+#   Deregisters the specified AMI. After you deregister an AMI, it can't be used to launch new instances.
 #
 # Commands:
-#   hubot ec2 ami deregister --ami_id=[ami_id] --dry-run - Try deregistering an ami
-#   hubot ec2 ami deregister --ami_id=[ami_id] - Deregister an ami
+#   hubot ec2 ami deregister --ami_id=[ami_id] - Deregisters the specified AMI
+#
+# Notes:
+#   --ami_id=*** : [required] The ID of the AMI.
+#   --dry-run    : [optional] Checks whether the api request is right. Recommend to set before applying to real asset.
 
 util = require 'util'
 
