@@ -1,9 +1,11 @@
 # Description:
-#   List ec2 ami info
+#   Describes one or more of the images (AMIs, AKIs, and ARIs) available to you
 #
 # Commands:
 #   hubot ec2 ami ls - Desplays all AMI(Images)
-#   hubot ec2 ami ls --owner=[owner] - Desplays owner's AMI(Images)
+#
+# Notes:
+#   --owner=*** : [optional] Filters the images by the owner. Specify an AWS account ID, amazon, aws-marketplace self. Omitting this option returns all images for which you have launch permissions.
 
 moment = require 'moment'
 tsv    = require 'tsv'

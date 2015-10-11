@@ -5,7 +5,7 @@
 #   HUBOT_AWS_EC2_CREATE_AMI_CONFIG: [optional] Path to csonfile to be performs service operation based on. Required config_path argument or this.
 #
 # Commands:
-#   hubot ec2 ami create - Create an ami.
+#   hubot ec2 ami create --instance_id=*** - Create an ami.
 #
 # Notes:
 #   --instance_id=*** : [required] Target instance id.
