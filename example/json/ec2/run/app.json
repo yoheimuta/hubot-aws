@@ -1,0 +1,21 @@
+{
+  "MinCount": 1,
+  "MaxCount": 1,
+  "DryRun": false,
+  "ImageId": "ami-936d9d93",
+  "KeyName": "yourkey",
+  "InstanceType": "c3.xlarge",
+  "Placement": {
+    "AvailabilityZone": "ap-northeast-1a"
+  },
+  "NetworkInterfaces": [
+    {
+      "Groups": [
+        "sg-your"
+      ],
+      "SubnetId": "subnet-your",
+      "DeviceIndex": 0,
+      "AssociatePublicIpAddress": true
+    }
+  ]
+}

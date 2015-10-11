@@ -101,7 +101,8 @@ export HUBOT_AWS_REGION="ap-northeast-1"
 # required when used
 export HUBOT_AWS_DEBUG="1"
 export HUBOT_AWS_CAN_ACCESS_ROLE="tech"
-export HUBOT_AWS_EC2_RUN_CONFIG="files/aws/ec2/run/app.cson"
+## allow json and cson fileformat as each api config
+export HUBOT_AWS_EC2_RUN_CONFIG="files/aws/ec2/run/app.json"
 export HUBOT_AWS_EC2_RUN_USERDATA_PATH="files/aws/ec2/run/initfile"
 export HUBOT_AWS_EC2_CREATE_AMI_CONFIG="files/aws/ec2/create_ami/app.cson"
 export HUBOT_AWS_AS_LAUNCH_CONF_CONFIG="files/aws/autoscaling/create_launch_configuration/app.cson"
