@@ -5,7 +5,7 @@
 #   hubot ec2 ami ls - Desplays all AMI(Images)
 #
 # Notes:
-#   --owner=*** : [optional] Filters the images by the owner. Specify an AWS account ID, amazon, aws-marketplace self. Omitting this option returns all images for which you have launch permissions.
+#   --owner=*** : [optional] Filters the images by the owner. Specify an AWS account ID, amazon, aws-marketplace self. Omitting this option set a default value: self.
 
 moment = require 'moment'
 tsv    = require 'tsv'
