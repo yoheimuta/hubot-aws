@@ -75,6 +75,7 @@ hubot ec2 ami deregister --ami_id=[ami_id] - Deregisters the specified AMI
 hubot ec2 ami ls - Desplays all AMI(Images)
 hubot ec2 ls - Displays all Instances
 hubot ec2 ls --instance_id=[instance_id] - Details an Instance
+hubot ec2 ls --instance_filter=[instance_name] - Instances that contain instance_name in name
 hubot ec2 run - Run an Instance
 hubot ec2 sg create --group_name=[group_name] --desc=[desc] --vpc_id=[vpc_id] - Create a SecurityGroup
 hubot ec2 sg delete --group_id=[group_id] - Delete the SecurityGroup

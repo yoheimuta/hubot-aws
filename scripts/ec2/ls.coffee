@@ -14,14 +14,25 @@ getArgParams = (arg) ->
   ins_id_capture = /--instance_id=(.*?)( |$)/.exec(arg)
   ins_id = if ins_id_capture then ins_id_capture[1] else ''
 
-  return {ins_id: ins_id}
+  # filter by instance name
+  ins_filter_capture = /--instance_filter=(.*?)( |$)/.exec(arg)
+  ins_filter = if ins_filter_capture then ins_filter_capture[1] else ''
+
+  return {
+    ins_id: ins_id,
+    ins_filter: ins_filter
+  }
 
 module.exports = (robot) ->
   robot.respond /ec2 ls(.*)$/i, (msg) ->
     arg_params = getArgParams(msg.match[1])
     ins_id  = arg_params.ins_id
+    ins_filter = arg_params.ins_filter
 
-    msg.send "Fetching #{ins_id || 'all (instance_id is not provided)'}..."
+    msgTxt = "Fetching #{ins_id || 'all (instance_id is not provided)'}"
+    msgTxt += " containing '#{ins_filter}' in name" if ins_filter
+    msgTxt += "..."
+    msg.send msgTxt
 
     aws = require('../../aws.coffee').aws()
     ec2 = new aws.EC2({apiVersion: '2014-10-01'})
@@ -46,6 +57,8 @@ module.exports = (robot) ->
             name = '[NoName]'
             for tag in ins.Tags when tag.Key is 'Name'
               name = tag.Value
+
+            continue if ins_filter and name.indexOf(ins_filter) is -1
 
             messages.push({
               time   : moment(ins.LaunchTime).format('YYYY-MM-DD HH:mm:ssZ')
