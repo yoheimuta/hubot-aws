@@ -1,10 +1,14 @@
 # Description:
 #   List ec2 instances info
-#   Show detail about a instance if specified instance id
+#   Show detail about an instance if specified an instance id
+#   Filter ec2 instances info if specified an instance name
 #
 # Commands:
-#   hubot ec2 ls - Displays all Instances
-#   hubot ec2 ls --instance_id=[instance_id] - Details an Instance
+#   hubot ec2 ls - Displays Instances
+
+# Notes:
+#   --instance_id=***     : [optional] The id of an instance. If omit it, returns info about all instances.
+#   --instance_filter=*** : [optional] The name to be used for filtering return values by an instance name.
 
 moment = require 'moment'
 util   = require 'util'
@@ -29,10 +33,10 @@ module.exports = (robot) ->
     ins_id  = arg_params.ins_id
     ins_filter = arg_params.ins_filter
 
-    msgTxt = "Fetching #{ins_id || 'all (instance_id is not provided)'}"
-    msgTxt += " containing '#{ins_filter}' in name" if ins_filter
-    msgTxt += "..."
-    msg.send msgTxt
+    msg_txt = "Fetching #{ins_id || 'all (instance_id is not provided)'}"
+    msg_txt += " containing '#{ins_filter}' in name" if ins_filter
+    msg_txt += "..."
+    msg.send msg_txt
 
     aws = require('../../aws.coffee').aws()
     ec2 = new aws.EC2({apiVersion: '2014-10-01'})
