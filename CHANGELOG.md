@@ -1,5 +1,13 @@
 # Change Log
 
+## [v0.3.0](https://github.com/yoheimuta/hubot-aws/tree/v0.3.0) (2016-01-07)
+
+[Full Changelog](https://github.com/yoheimuta/hubot-aws/compare/v0.2.0...v0.3.0)
+
+**Merged pull requests:**
+
+- ec2 ls: allow filtering instances by name [\#41](https://github.com/yoheimuta/hubot-aws/pull/41) ([relvao](https://github.com/relvao))
+
 ## [v0.2.0](https://github.com/yoheimuta/hubot-aws/tree/v0.2.0) (2015-10-11)
 
 [Full Changelog](https://github.com/yoheimuta/hubot-aws/compare/v0.1.0...v0.2.0)
