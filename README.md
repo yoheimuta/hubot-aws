@@ -2,6 +2,9 @@
 
 Hubot masters aws commands
 
+I wrote a guest blog published by PacktPub about a quick intro to this npm module.
+See https://www.packtpub.com/books/content/part2-chatops-slack-and-aws-cli.
+
 ## Installation
 
 Add **hubot-aws** to your `package.json` file:
