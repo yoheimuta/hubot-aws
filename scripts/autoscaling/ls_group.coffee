@@ -31,10 +31,7 @@ module.exports = (robot) ->
         if arg_name
           msg.send util.inspect(res, false, null)
         else
-          msg.send "time\tcurrent_size\tdesired_size\tmin_size\tmax_size\taz\telb\tconf\tname"
-          msg.send "\ttag.Key\ttag.Value"
-          msg.send Array(130).join('-')
-          msg.send Array(130).join('-')
+          msg.send "name\tcurrent_size\tdesired_size\tmin_size\tmax_size"
 
           messages = []
 
@@ -52,10 +49,7 @@ module.exports = (robot) ->
             desired_size = group.DesiredCapacity
             current_size = group.Instances.length
 
-            messages.push("#{time}\t#{current_size}\t#{desired_size}\t#{min_size}\t#{max_size}\t#{az}\t#{elb}\t#{conf}\t#{name}")
-
-            for tag in group.Tags
-              messages.push("\t#{tag.Key}\t#{tag.Value}")
+            messages.push("#{name}\t#{current_size}\t#{desired_size}\t#{min_size}\t#{max_size}")
 
           message   = messages.join "\n"
           message ||= '[None]'
