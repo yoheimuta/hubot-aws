@@ -1,5 +1,13 @@
 # Change Log
 
+## [v0.3.1](https://github.com/yoheimuta/hubot-aws/tree/v0.3.1) (2016-06-23)
+
+[Full Changelog](https://github.com/yoheimuta/hubot-aws/compare/v0.3.0...v0.3.1)
+
+**Merged pull requests:**
+
+- Upgrade aws-sdk-js to the latest version [\#44](https://github.com/yoheimuta/hubot-aws/pull/44) ([waniji](https://github.com/waniji))
+
 ## [v0.3.0](https://github.com/yoheimuta/hubot-aws/tree/v0.3.0) (2016-01-07)
 
 [Full Changelog](https://github.com/yoheimuta/hubot-aws/compare/v0.2.0...v0.3.0)
