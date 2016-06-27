@@ -1,5 +1,13 @@
 # Change Log
 
+## [v0.4.0](https://github.com/yoheimuta/hubot-aws/tree/v0.4.0) (2016-06-27)
+
+[Full Changelog](https://github.com/yoheimuta/hubot-aws/compare/v0.3.1...v0.4.0)
+
+**Merged pull requests:**
+
+- Added command of autoscaling scheduled action \[ls|put|delete\] [\#46](https://github.com/yoheimuta/hubot-aws/pull/46) ([waniji](https://github.com/waniji))
+
 ## [v0.3.1](https://github.com/yoheimuta/hubot-aws/tree/v0.3.1) (2016-06-23)
 
 [Full Changelog](https://github.com/yoheimuta/hubot-aws/compare/v0.3.0...v0.3.1)
