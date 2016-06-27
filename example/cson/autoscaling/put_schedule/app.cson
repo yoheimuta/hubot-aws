@@ -1,0 +1,13 @@
+ScheduledActionName: "Add"
+
+StartTime: "2016-07-13T08:00:00Z"
+
+EndTime: "2016-07-20T08:00:00Z"
+
+Recurrence: "30 11 * * *"
+
+MinSize: 2
+
+MaxSize: 30
+
+DesiredCapacity: 15
