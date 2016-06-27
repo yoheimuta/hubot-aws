@@ -70,6 +70,10 @@ hubot autoscaling update --name=[name] --max=[max] - Update MaxSize of the AutoS
 hubot autoscaling update --name=[name] --max=[max] --dry-run - Try updating MaxSize of the AutoScaling Group
 hubot autoscaling update --name=[name] --min=[min] - Update MinSize of the AutoScaling Group
 hubot autoscaling update --name=[name] --min=[min] --dry-run - Try updating MinSize of the AutoScaling Group
+hubot autoscaling schedule delete --schedule_name=[policy_name] - Delete the AutoScaling Scheduled Action
+hubot autoscaling schedule ls - Displays all AutoScaling Scheduled Actions
+hubot autoscaling schedule ls --group_name=[group_name] - Details an Autoscaling Scheduled Actions
+hubot autoscaling schedule put - Put an AutoScaling Scheduled Action
 hubot cloudwatch alarm delete --name=[alarm_name] - Delete the Alarm
 hubot cloudwatch alarm ls - Displays all Alarms
 hubot cloudwatch alarm ls --name=[alarm_name] - Details an Alarm
