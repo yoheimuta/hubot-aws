@@ -9,7 +9,7 @@ module.exports = (robot) ->
     msg.send "Fetching ..."
 
     aws = require('../../aws.coffee').aws()
-    sns  = new aws.SNS();
+    sns  = new aws.SNS()
 
     sns.publish {
       topicArn: topicArn

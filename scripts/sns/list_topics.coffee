@@ -8,11 +8,11 @@ moment = require 'moment'
 tsv    = require 'tsv'
 
 module.exports = (robot) ->
-  robot.respond /sns list topics/$/i, (msg) ->
+  robot.respond /sns list topics$/i, (msg) ->
     msg.send "Fetching ..."
 
     aws = require('../../aws.coffee').aws()
-    sns  = new aws.SNS();
+    sns  = new aws.SNS()
 
     sns.listTopics {}, (err, response) ->
       if err

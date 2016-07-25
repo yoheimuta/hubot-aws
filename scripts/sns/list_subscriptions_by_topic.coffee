@@ -12,7 +12,7 @@ module.exports = (robot) ->
     msg.send "Fetching ..."
 
     aws = require('../../aws.coffee').aws()
-    sns  = new aws.SNS();
+    sns  = new aws.SNS()
 
     sns.listSubscriptionsByTopic {topicArn: topicArn}, (err, response) ->
       if err
