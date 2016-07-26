@@ -5,7 +5,7 @@
 #   hubot sns publish --topicArn="arn:aws:sns:::..." --message="{}" --subject="Whatever"
 
 module.exports = (robot) ->
-  robot.respond /sns publish(.*?)$/i, (msg) ->
+  robot.respond /sns publish(.*?)( |$)/i, (msg) ->
 
     topic_name_capture = /--topic=(.*?)( |$)/.exec(msg)
     topicArn = if msg.match(/(--topicArn)(--topic)/) then topic_name_capture else msg.send('--topic required')
