@@ -6,6 +6,10 @@
 
 module.exports = (robot) ->
   robot.respond /sns publish --topicArn=(.*?)(| --message)(| --subject)$/i, (msg) ->
+    unless require('../../auth.coffee').canAccess(robot, msg.envelope.user)
+      msg.send "You cannot access this feature. Please contact admin"
+      return
+
     msg.send "Fetching ..."
 
     aws = require('../../aws.coffee').aws()
