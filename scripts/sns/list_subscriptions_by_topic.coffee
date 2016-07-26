@@ -2,13 +2,15 @@
 #   List sns subscriptions by topic
 #
 # Commands:
-#   hubot sns list subscriptions by topic --name="arn:aws..."
-
-moment = require 'moment'
-tsv    = require 'tsv'
+#   hubot sns list subscriptions by topic --topic="arn:aws..."
 
 module.exports = (robot) ->
-  robot.respond /sns list subscriptions by topic --name=(.*)$/i, (msg) ->
+
+  robot.respond /sns list subscriptions by topic(.*)$/i, (msg) ->
+
+    topic_name_capture = /--topic-name=(.*?)( |$)/.exec(msg)
+    topicArn = if msg.includes(/(--topic)/) then topic_name_capture else msg.send "Please include --topic"
+
     unless require('../../auth.coffee').canAccess(robot, msg.envelope.user)
       msg.send "You cannot access this feature. Please contact admin"
       return
@@ -22,4 +24,8 @@ module.exports = (robot) ->
       if err
         msg.send "Error: #{err}"
       else
-        msg.send(response)
+        response.Subscriptions.forEach (subscription) ->
+          labels = Object.keys(subscription)
+          labels.forEach (label) ->
+            msg.send(label + " " + subscription[label])
+          msg.send "____________________________________"

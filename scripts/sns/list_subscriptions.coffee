@@ -21,5 +21,6 @@ module.exports = (robot) ->
       else
         response.Subscriptions.forEach (subscription) ->
           labels = Object.keys(subscription)
-          labels.forEach (label, index) ->
-            msg.send(label + " " + subscription[index])
+          labels.forEach (label) ->
+            msg.send(label + " " + subscription[label])
+          msg.send "____________________________________"
