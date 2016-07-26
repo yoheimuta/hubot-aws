@@ -8,8 +8,8 @@ module.exports = (robot) ->
 
   robot.respond /sns list subscriptions by topic(.*)$/i, (msg) ->
 
-    topic_name_capture = /--topic-name=(.*?)( |$)/.exec(msg)
-    topicArn = if msg.includes(/(--topic)/) then topic_name_capture else msg.send "Please include --topic"
+    topic_name_capture = /--topic=(.*?)( |$)/.exec(msg)
+    topicArn = if msg.match(/(--topic)/) then topic_name_capture else msg.send "Please include --topic"
 
     msg.send "Fetching ..."
 
