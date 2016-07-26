@@ -7,14 +7,12 @@
 module.exports = (robot) ->
   robot.respond /sns publish --topicArn=(.*?)(| --message)(| --subject)$/i, (msg) ->
 
-    topicArn = if msg.match(/(--topicArn)(--topic)/) then true else false
-    message = if msg.match(/(--message)(--msg)/) then true else false
-    subject = if msg.match(/(--subject)(--subj)/) then true else false
-
-  if process.env.HUBOT_AUTH_ENABLED || process.env.HUBOT_AWS_DEBUG == "1"
-    unless require('../../auth.coffee').canAccess(robot, msg.envelope.user)
-      msg.send "You cannot access this feature. Please contact admin"
-      return
+    topic_name_capture = /--topic=(.*?)( |$)/.exec(msg)
+    topicArn = if msg.match(/(--topicArn)(--topic)/) then topic_name_capture else msg.send('--topic required')
+    message_capture = /--message=(.*?)( |$)/.exec(msg)
+    message = if msg.match(/(--message)(--msg)/) then message_capture else msg.send('--message required')
+    subject_capture = /--subject=(.*?)( |$)/.exec(msg)
+    subject = if msg.match(/(--subject)(--subj)/) then true else msg.send('--subject required')
 
     msg.send "Fetching ..."
 
@@ -22,7 +20,9 @@ module.exports = (robot) ->
     sns  = new aws.SNS()
 
     sns.publish {
-      topicArn: topicArn
+      topicArn: topicArn,
+      message: message,
+      subject: subject
     }, (err, response) ->
       if err
         msg.send "Error: #{err}"
