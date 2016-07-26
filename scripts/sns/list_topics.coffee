@@ -9,9 +9,10 @@ tsv    = require 'tsv'
 
 module.exports = (robot) ->
   robot.respond /sns list topics$/i, (msg) ->
-    unless require('../../auth.coffee').canAccess(robot, msg.envelope.user)
-      msg.send "You cannot access this feature. Please contact admin"
-      return
+    if process.env.HUBOT_AUTH_ENABLED || process.env.HUBOT_AWS_DEBUG == "1"
+      unless require('../../auth.coffee').canAccess(robot, msg.envelope.user)
+        msg.send "You cannot access this feature. Please contact admin"
+        return
 
     msg.send "Fetching ..."
 

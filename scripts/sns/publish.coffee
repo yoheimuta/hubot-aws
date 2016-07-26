@@ -11,7 +11,7 @@ module.exports = (robot) ->
     message = if msg.match(/(--message)(--msg)/) then true else false
     subject = if msg.match(/(--subject)(--subj)/) then true else false
 
-
+  if process.env.HUBOT_AUTH_ENABLED || process.env.HUBOT_AWS_DEBUG == "1"
     unless require('../../auth.coffee').canAccess(robot, msg.envelope.user)
       msg.send "You cannot access this feature. Please contact admin"
       return

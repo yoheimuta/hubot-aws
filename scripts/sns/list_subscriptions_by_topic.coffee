@@ -11,9 +11,10 @@ module.exports = (robot) ->
     topic_name_capture = /--topic-name=(.*?)( |$)/.exec(msg)
     topicArn = if msg.includes(/(--topic)/) then topic_name_capture else msg.send "Please include --topic"
 
-    unless require('../../auth.coffee').canAccess(robot, msg.envelope.user)
-      msg.send "You cannot access this feature. Please contact admin"
-      return
+    if process.env.HUBOT_AUTH_ENABLED || process.env.HUBOT_AWS_DEBUG == "1"
+      unless require('../../auth.coffee').canAccess(robot, msg.envelope.user)
+        msg.send "You cannot access this feature. Please contact admin"
+        return
 
     msg.send "Fetching ..."
 
