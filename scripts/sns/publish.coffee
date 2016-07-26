@@ -8,13 +8,13 @@ module.exports = (robot) ->
   robot.respond /sns publish(.*?)( |$)/i, (msg) ->
 
     topic_name_capture = /--topic=(.*?)( |$)/.exec(msg)
-    topicArn = if msg.match(/(--topicArn)(--topic)/) then topic_name_capture else msg.send('--topic required')
+    topicArn = if msg.match(/--topic/) then topic_name_capture else msg.send('--topic required')
     message_capture = /--message=(.*?)( |$)/.exec(msg)
     message = if msg.match(/(--message)(--msg)/) then message_capture else msg.send('--message required')
     subject_capture = /--subject=(.*?)( |$)/.exec(msg)
-    subject = if msg.match(/(--subject)(--subj)/) then true else msg.send('--subject required')
+    subject = if msg.match(/(--subject)(--subj)/) then subject_capture else msg.send('--subject required')
 
-    msg.send "Fetching ..."
+    msg.send "Publishing ..."
 
     aws = require('../../aws.coffee').aws()
     sns  = new aws.SNS()
