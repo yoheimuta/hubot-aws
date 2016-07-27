@@ -18,7 +18,6 @@ module.exports = (robot) ->
       Message: message,
       Subject: subject
     }
-    console.log(msg);
     sns.publish params, (err, response) ->
       if err
         msg.reply "Error: #{err}"
