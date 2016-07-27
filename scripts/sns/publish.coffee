@@ -2,30 +2,25 @@
 #   Publish a message to SNS
 #
 # Commands:
-#   hubot sns publish --topicArn="arn:aws:sns:::..." --message="{}" --subject="Whatever"
-getArgParams = (arg) ->
-  topic_name_capture = /--topic=(.*?)( |$)/.exec(arg)
-  topicArn = if arg.match(/--topic/) then topic_name_capture
-  message_capture = /--message=(.*?)( |$)/.exec(arg)
-  message = if arg.match(/(--message)(--msg)/) then message_capture else ""
-  subject_capture = /--subject=(.*?)( |$)/.exec(arg)
-  subject = if arg.match(/(--subject)(--subj)/) then subject_capture else "Test Message"
-  return {topicArn: topicArn, message: message, subject: subject}
+#   hubot sns publish {message} to {message}
 
 module.exports = (robot) ->
-  robot.respond /sns publish(.*?)/i, (msg) ->
-    msg.send "Publishing ..."
-    arg_params = getArgParams(msg)
+  robot.respond /sns publish (.*) to (.*)/i, (msg) ->
+    topicArn = msg.match[2]
+    message = msg.match[1]
+    subject = "Hubot SNS Published"
+    msg.send('Publishing to ' + msg.match[2])
 
     aws = require('../../aws.coffee').aws()
     sns = new aws.SNS()
-
-    sns.publish {
-      TopicArn: arg_params.topicArn,
-      Message: arg_params.message,
-      Subject: arg_params.subject
-    }, (err, response) ->
+    params = {
+      TopicArn: topicArn,
+      Message: message,
+      Subject: subject
+    }
+    console.log(msg);
+    sns.publish params, (err, response) ->
       if err
-        msg.send "Error: #{err}"
+        msg.reply "Error: #{err}"
       else
-        msg.send(JSON.stringify(response))
+        msg.reply JSON.stringify(response)
