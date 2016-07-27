@@ -13,18 +13,20 @@ getArgParams = (arg) ->
   return {topicArn: topicArn, message: message, subject: subject}
 
 module.exports = (robot) ->
-  robot.respond /sns publish(.*)$/i, (msg) ->
-    arg_params = getArgParams(msg.match[1])
+  robot.respond /sns publish(.*?)/i, (msg) ->
+    console.log(msg);
+    console.log(msg.match(1));
+    arg_params = getArgParams(msg)
 
     msg.send "Publishing ..."
 
     aws = require('../../aws.coffee').aws()
-    sns  = new aws.SNS()
+    sns = new aws.SNS()
 
     sns.publish {
-      topicArn: arg_params.topicArn,
-      message: arg_params.message,
-      subject: arg_params.subject
+      TopicArn: arg_params.topicArn,
+      Message: arg_params.message,
+      Subject: arg_params.subject
     }, (err, response) ->
       if err
         msg.send "Error: #{err}"
