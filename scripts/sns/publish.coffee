@@ -14,11 +14,8 @@ getArgParams = (arg) ->
 
 module.exports = (robot) ->
   robot.respond /sns publish(.*?)/i, (msg) ->
-    console.log(msg);
-    console.log(msg.match(1));
-    arg_params = getArgParams(msg)
-
     msg.send "Publishing ..."
+    arg_params = getArgParams(msg)
 
     aws = require('../../aws.coffee').aws()
     sns = new aws.SNS()
