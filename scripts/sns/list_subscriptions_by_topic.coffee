@@ -8,7 +8,7 @@ module.exports = (robot) ->
 
   robot.respond /sns list subscriptions in (.*)$/i, (msg) ->
 
-    topic = msg.match[1];
+    topic = msg.match[1]
 
     msg.send "Fetching subscriptions for " + topic
 
