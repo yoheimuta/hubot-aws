@@ -16,7 +16,7 @@ downloadCertificate = (url, cb) ->
 
     res.on 'data', (chunk) ->
       chunks.push(chunk)
-    res.on 'end', () ->
+    res.on 'end', ->
       certificateCache[url] = chunks.join('')
       return cb null, certificateCache[url]
 
@@ -44,11 +44,11 @@ verifySignature = (msg, cb) ->
     if error
       return cb error
 
-    signatureString = createSignatureString msg;
+    signatureString = createSignatureString msg
 
     try
-      verifier = crypto.createVerify('RSA-SHA1');
-      verifier.update(signatureString, 'utf8');
+      verifier = crypto.createVerify('RSA-SHA1')
+      verifier.update(signatureString, 'utf8')
       if not verifier.verify(pem, msg.Signature, 'base64')
         return cb new Error('Signature verification failed')
     catch error

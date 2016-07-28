@@ -37,7 +37,7 @@ class SNS
     req.on 'data', (chunk) ->
       chunks.push(chunk)
 
-    req.on 'end', () =>
+    req.on 'end', =>
       req.body = JSON.parse(chunks.join(''))
       verifySignature req.body, (error) =>
         if error
