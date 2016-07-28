@@ -20,7 +20,7 @@
 #   mdouglass
 
 { inspect } = require 'util'
-{ verifySignature } = require './support/sns-message-verify'
+{ verifySignature } = require './sns-message-verify'
 
 Options =
   url:     process.env.HUBOT_SNS_URL or '/hubot/sns'
