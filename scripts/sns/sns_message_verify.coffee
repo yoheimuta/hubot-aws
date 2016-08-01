@@ -1,8 +1,8 @@
 https = require('https')
 crypto = require('crypto')
-{ inspect } = require('util')
+{inspect} = require('util')
 
-certificateCache = { }
+certificateCache = {}
 
 downloadCertificate = (url, cb) ->
   if url is undefined
@@ -24,9 +24,9 @@ downloadCertificate = (url, cb) ->
     return cb new Error('Certificate download failed: ' + error)
 
 signatureStringOrder =
-  'Notification': [ 'Message', 'MessageId', 'Subject', 'Timestamp', 'TopicArn', 'Type'],
-  'SubscriptionConfirmation': [ 'Message', 'MessageId', 'SubscribeURL', 'Timestamp', 'Token', 'TopicArn', 'Type' ],
-  'UnsubscribeConfirmation': [ 'Message', 'MessageId', 'SubscribeURL', 'Timestamp', 'Token', 'TopicArn', 'Type' ]
+  'Notification': ['Message', 'MessageId', 'Subject', 'Timestamp', 'TopicArn', 'Type'],
+  'SubscriptionConfirmation': ['Message', 'MessageId', 'SubscribeURL', 'Timestamp', 'Token', 'TopicArn', 'Type'],
+  'UnsubscribeConfirmation': ['Message', 'MessageId', 'SubscribeURL', 'Timestamp', 'Token', 'TopicArn', 'Type']
 
 createSignatureString = (msg) ->
   chunks = []
@@ -56,4 +56,4 @@ verifySignature = (msg, cb) ->
 
     return cb null
 
-module.exports = { verifySignature: verifySignature }
+module.exports.verifySignature = verifySignature

@@ -1,5 +1,5 @@
 # Description:
-#   <description of the scripts functionality>
+#   Allows for Hubot to recieve push notifications from SNS
 #
 # Dependencies:
 #   None
@@ -19,11 +19,10 @@
 # Author:
 #   mdouglass
 
-{ inspect } = require 'util'
-{ verifySignature } = require './sns-message-verify'
+{inspect} = require 'util'
 
 Options =
-  url:     process.env.HUBOT_SNS_URL or '/hubot/sns'
+  url: process.env.HUBOT_SNS_URL or '/hubot/sns'
 
 class SNS
   constructor: (robot) ->
@@ -39,7 +38,7 @@ class SNS
 
     req.on 'end', =>
       req.body = JSON.parse(chunks.join(''))
-      verifySignature req.body, (error) =>
+      snsMessageVerify req.body, (error) =>
         if error
           @robot.logger.warning "#{error}\n#{inspect req.body}"
           @fail req, res
@@ -78,17 +77,16 @@ class SNS
 
   notify: (msg) ->
     message =
-      topic:     msg.TopicArn.split(':').reverse()[0]
-      topicArn:  msg.TopicArn
-      subject:   msg.Subject
-      message:   msg.Message
+      topic: msg.TopicArn.split(':').reverse()[0]
+      topicArn: msg.TopicArn
+      subject: msg.Subject
+      message: msg.Message
       messageId: msg.MessageId
 
     @robot.emit 'sns:notification', message
     @robot.emit 'sns:notification:' + message.topic, message
 
 module.exports = (robot) ->
-
   sns = new SNS robot
 
   robot.emit 'sns:ready', sns
