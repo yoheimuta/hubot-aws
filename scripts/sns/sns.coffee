@@ -86,7 +86,12 @@ class SNS
     @robot.emit 'sns:notification', message
     @robot.emit 'sns:notification:' + message.topic, message
 
+  channelID: (name) ->
+    temp = name.toLowerCase().replace(/\s/g, "_")
+    "#{process.env.HUBOT_HIPCHAT_JID.split("_")[0]}_#{temp}@conf.hipchat.com"
+
 module.exports = (robot) ->
   sns = new SNS robot
-
+  robot.on 'sns:notification', (message) ->
+    robot.messageRoom sns.channelID(message.subject), message.message
   robot.emit 'sns:ready', sns
