@@ -56,4 +56,4 @@ verifySignature = (msg, cb) ->
 
     return cb null
 
-module.exports.verifySignature = verifySignature
+exports.verifySignature = verifySignature

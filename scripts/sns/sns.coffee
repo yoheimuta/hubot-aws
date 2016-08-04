@@ -18,8 +18,8 @@
 #
 # Author:
 #   mdouglass
-
 {inspect} = require 'util'
+{ verifySignature } = require './support/sns_message_verify'
 
 Options =
   url: process.env.HUBOT_SNS_URL or '/hubot/sns'
@@ -38,7 +38,7 @@ class SNS
 
     req.on 'end', =>
       req.body = JSON.parse(chunks.join(''))
-      snsMessageVerify req.body, (error) =>
+      verifySignature req.body, (error) =>
         if error
           @robot.logger.warning "#{error}\n#{inspect req.body}"
           @fail req, res
