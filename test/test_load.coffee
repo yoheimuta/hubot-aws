@@ -25,7 +25,5 @@ describe 'hubot-aws', ->
       false unless fs.existsSync category_path
 
       for file in fs.readdirSync(category_path)
-        console.log category_path
-        console.log file
         script = require path.resolve category_path, file unless file == 'support'
         assert script != undefined
