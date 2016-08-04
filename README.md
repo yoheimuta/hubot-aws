@@ -96,6 +96,10 @@ hubot s3 ls - Displays all S3 buckets
 hubot s3 ls --bucket_name=[bucket-name] - Displays all objects
 hubot s3 ls --bucket_name=[bucket-name] --prefix=[prefix] - Displays all objects with prefix
 hubot s3 ls --bucket_name=[bucket-name] --prefix=[prefix] --marker=[marker] - Displays all objects with prefix from marker
+hubot sns list topics
+hubot sns list subscriptions
+hubot sns list subscription in [topicArn]
+hubot sns publish [message] to [topicArn]
 ```
 
 ## Configurations
@@ -306,6 +310,24 @@ images/000e90ea2e01b830a8d6cd68a10b3e5becdd8a98e41b402a9da3ad97eda1332e/
 images/001c03788ee31167872d38ce09493a4deb1cbe11728a762065ee1a5acfd1404b/
 ...
 ```
+
+### SNS
+
+#### Configuring
+
+In addition to administration of SNS, hubot-aws can also receive push notifications. 
+
+* Create a new SNS topic
+* Create a subscription and choose HTTP(S). The default configuration is http://<huboturl>:8080/hubot/sns
+
+You should see the subscription ID change from PendingConfirmation to a valid subscription id.
+
+#### Sending Messages
+
+Use the Subject property to set which room the message should be delivered in. 
+Use the common name here, for example `My Room`.
+It does not accept multiple rooms or process html templates for messages.
+
 
 ## Recommended Usage
 
