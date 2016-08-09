@@ -5,7 +5,8 @@
 #   None
 #
 # Configuration:
-#   HUBOT_SNS_URL
+#   HUBOT_SNS_URL -  the URL you want AWS SNS to POST messages
+#   HUBOT_HIPCHAT_JID -  the jabber id of the hubot
 #
 # Commands:
 #   None
@@ -14,7 +15,10 @@
 #   /hubot/sns
 #
 # Notes:
-#   <optional notes required for the script>
+#  Use this snippet in your own scripts to send messages to the chat room from SNS:
+#
+#  robot.on 'sns:notification', (message) ->
+#  robot.messageRoom sns.channelID(message.subject), message.message
 #
 # Author:
 #   mdouglass
@@ -86,15 +90,15 @@ class SNS
     @robot.emit 'sns:notification', message
     @robot.emit 'sns:notification:' + message.topic, message
 
+  # Given a room name, create a fully qualified room JID
+  # This is specific to hipchat.
   channelID: (name) ->
     if process.env.HUBOT_HIPCHAT_JID
       temp = name.toLowerCase().replace(/\s/g, "_")
       "#{process.env.HUBOT_HIPCHAT_JID.split("_")[0]}_#{temp}@conf.hipchat.com"
     else
-      @robot.reply 'Please set HUBOT_HIPCHAT_JID to use hubot-aws'
+      name.toLowerCase().replace(/\s/g, "_")
 
 module.exports = (robot) ->
   sns = new SNS robot
-  robot.on 'sns:notification', (message) ->
-    robot.messageRoom sns.channelID(message.subject), message.message
   robot.emit 'sns:ready', sns
