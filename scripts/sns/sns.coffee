@@ -87,8 +87,11 @@ class SNS
     @robot.emit 'sns:notification:' + message.topic, message
 
   channelID: (name) ->
-    temp = name.toLowerCase().replace(/\s/g, "_")
-    "#{process.env.HUBOT_HIPCHAT_JID.split("_")[0]}_#{temp}@conf.hipchat.com"
+    if process.env.HUBOT_HIPCHAT_JID
+      temp = name.toLowerCase().replace(/\s/g, "_")
+      "#{process.env.HUBOT_HIPCHAT_JID.split("_")[0]}_#{temp}@conf.hipchat.com"
+    else
+      @robot.reply 'Please set HUBOT_HIPCHAT_JID to use hubot-aws'
 
 module.exports = (robot) ->
   sns = new SNS robot
