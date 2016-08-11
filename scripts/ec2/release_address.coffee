@@ -5,7 +5,7 @@
 #   hubot ec2 release address {eipalloc-id}
 #   hubot ec2 release address {publicIp}
 
-aws = require('../aws').aws()
+aws = require('../../aws').aws()
 ec2 = new aws.EC2()
 
 module.exports = (robot) ->

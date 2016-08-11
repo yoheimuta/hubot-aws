@@ -4,7 +4,7 @@
 # Commands:
 #   hubot ec2 describe addresses
 
-aws = require('../aws').aws()
+aws = require('../../aws').aws()
 ec2 = new aws.EC2()
 
 module.exports = (robot) ->

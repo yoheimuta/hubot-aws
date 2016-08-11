@@ -5,7 +5,7 @@
 #   hubot ec2 associate {publicIp} to {instancId}
 #   hubot ec2 associate {AllocationId} to {instanceId}
 
-aws = require('.,/aws').aws()
+aws = require('../../aws').aws()
 ec2 = new aws.EC2()
 
 module.exports = (robot) ->
