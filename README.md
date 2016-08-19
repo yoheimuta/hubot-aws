@@ -96,6 +96,10 @@ hubot s3 ls - Displays all S3 buckets
 hubot s3 ls --bucket_name=[bucket-name] - Displays all objects
 hubot s3 ls --bucket_name=[bucket-name] --prefix=[prefix] - Displays all objects with prefix
 hubot s3 ls --bucket_name=[bucket-name] --prefix=[prefix] --marker=[marker] - Displays all objects with prefix from marker
+hubot sns list topics
+hubot sns list subscriptions
+hubot sns list subscription in [topicArn]
+hubot sns publish [message] to [topicArn]
 ```
 
 ## Configurations
@@ -305,6 +309,39 @@ hubot> Prefix
 images/000e90ea2e01b830a8d6cd68a10b3e5becdd8a98e41b402a9da3ad97eda1332e/
 images/001c03788ee31167872d38ce09493a4deb1cbe11728a762065ee1a5acfd1404b/
 ...
+```
+
+### SNS
+
+#### Configuring
+
+In addition to administration of SNS, hubot-aws can also receive push notifications. 
+
+* Create a new SNS topic
+* Create a subscription and choose HTTP(S). The default configuration is http://<huboturl>:8080/hubot/sns
+    * The URL can be set using HUBOT_SNS_URL
+* Set HUBOT_SNS_JID to hubot's jabber ID
+
+You should see the subscription ID change from PendingConfirmation to a valid subscription id.
+
+#### Receiving Messages
+
+Use the Subject property to set which room the message should be delivered in, usually its JID. Messages can be raw or JSON format, but JSON is preferred.
+If you are using [hubot-hipchat](https://github.com/hipchat/hubot-hipchat) use the plain old room name for the Subject. 
+The Subject property does not accept multiple rooms. Additionally the Messages does not natively process html templates, but one could implement it.
+
+#### Sending Messages
+
+`hubot-aws` does not send the message to a chat room. This is due to the myriad of adapters and clients hubot supports.
+To process a message and send it to your chat room, hook into the `sns:notification` event.
+
+```
+# Use this snippet in your own scripts to send messages to the chat room from SNS
+robot.on 'sns:notification', (message) ->
+  #if using hipchat the channelID function converts the common name to the room JID  
+  robot.messageRoom sns.channelID(message.subject), message.message
+  #if using another adapter
+    robot.messageRoom message.subject, message.message
 ```
 
 ## Recommended Usage
