@@ -26,11 +26,13 @@ module.exports = (robot) ->
     aws = require('../../aws.coffee').aws()
     ec2 = new aws.EC2({apiVersion: '2014-10-01'})
     #lets see if the instance(s) exist(s)
+    msg.send "Looking up #{args}"
     ec2.describeInstances {InstanceIds: args}, (err, response) =>
       if (err)
         msg.send err
       else
         instances = response.Reservations[0].Instances;
+        msg.send "I found #{instances}"
         switch instanceCommand
           when "start"
             msg.send "Starting #{args}"
