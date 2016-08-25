@@ -26,7 +26,7 @@ module.exports = (robot) ->
     aws = require('../../aws.coffee').aws()
     ec2 = new aws.EC2({apiVersion: '2014-10-01'})
     #lets see if the instance(s) exist(s)
-    ec2.describeInstances {instanceIds: args}, (err, response) =>
+    ec2.describeInstances {InstanceIds: args}, (err, response) =>
       if (err)
         msg.send err
       else
@@ -34,28 +34,28 @@ module.exports = (robot) ->
         switch instanceCommand
           when "start"
             msg.send "Starting #{args}"
-            ec2.startInstances {instanceIds: args}, (err, starting) =>
+            ec2.startInstances {InstanceIds: args}, (err, starting) =>
               if (err)
                 msg.send err
               else
                 msg.send starting
           when "stop"
             msg.send "Stopping #{args}"
-            ec2.stopInstances {instanceIds: args}, (err, stopping) =>
+            ec2.stopInstances {InstanceIds: args}, (err, stopping) =>
               if (err)
                 msg.send err
               else
                 msg.send stopping
           when "terminate"
             msg.send "Killing #{args}"
-            ec2.terminateInstances {instanceIds: args}, (err, terminating) =>
+            ec2.terminateInstances {InstanceIds: args}, (err, terminating) =>
               if (err)
                 msg.send err
               else
                 msg.send terminating
           when "reboot" or "restart"
             msg.send "Starting #{args}"
-            ec2.rebootInstances {instanceIds: args}, (err, starting) =>
+            ec2.rebootInstances {InstanceIds: args}, (err, starting) =>
               if (err)
                 msg.send err
               else
