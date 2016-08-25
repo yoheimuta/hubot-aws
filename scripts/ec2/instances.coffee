@@ -17,8 +17,8 @@
 
 module.exports = (robot) ->
   robot.respond /ec2 (.*) instances (.*)$/i, (msg) ->
-    instanceCommand = msg.match[1];
-    instanceIdArgs = msg.match[2];
+    instanceCommand = msg.match[1]
+    instanceIdArgs = msg.match[2]
     if(instanceIdArgs.match(','))
       args = instanceIdArgs.split(',')
     else
@@ -27,37 +27,37 @@ module.exports = (robot) ->
     ec2 = new aws.EC2({apiVersion: '2014-10-01'})
     #lets see if the instance(s) exist(s)
     msg.send "Looking up #{args}"
-    ec2.describeInstances {InstanceIds: args}, (err, response) =>
+    ec2.describeInstances {InstanceIds: args}, (err, response) ->
       if (err)
         msg.send err
       else
-        instances = response.Reservations[0].Instances;
+        instances = response.Reservations[0].Instances
         msg.send "I found #{JSON.stringify instances}"
         switch instanceCommand
           when "start"
             msg.send "Starting #{args}"
-            ec2.startInstances {InstanceIds: args}, (err, starting) =>
+            ec2.startInstances {InstanceIds: args}, (err, starting) ->
               if (err)
                 msg.send JSON.stringify err
               else
                 msg.send JSON.stringify starting
           when "stop"
             msg.send "Stopping #{args}"
-            ec2.stopInstances {InstanceIds: args}, (err, stopping) =>
+            ec2.stopInstances {InstanceIds: args}, (err, stopping) ->
               if (err)
                 msg.send JSON.stringify err
               else
                 msg.send JSON.stringify stopping
           when "terminate"
             msg.send "Killing #{args}"
-            ec2.terminateInstances {InstanceIds: args}, (err, terminating) =>
+            ec2.terminateInstances {InstanceIds: args}, (err, terminating) ->
               if (err)
                 msg.send JSON.stringify err
               else
                 msg.send JSON.stringify terminating
           when "reboot" or "restart"
             msg.send "Starting #{args}"
-            ec2.rebootInstances {InstanceIds: args}, (err, starting) =>
+            ec2.rebootInstances {InstanceIds: args}, (err, starting) ->
               if (err)
                 msg.send JSON.stringify err
               else
