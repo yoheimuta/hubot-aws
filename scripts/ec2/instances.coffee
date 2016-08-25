@@ -38,29 +38,29 @@ module.exports = (robot) ->
             msg.send "Starting #{args}"
             ec2.startInstances {InstanceIds: args}, (err, starting) =>
               if (err)
-                msg.send err
+                msg.send JSON.stringify err
               else
-                msg.send starting
+                msg.send JSON.stringify starting
           when "stop"
             msg.send "Stopping #{args}"
             ec2.stopInstances {InstanceIds: args}, (err, stopping) =>
               if (err)
-                msg.send err
+                msg.send JSON.stringify err
               else
-                msg.send stopping
+                msg.send JSON.stringify stopping
           when "terminate"
             msg.send "Killing #{args}"
             ec2.terminateInstances {InstanceIds: args}, (err, terminating) =>
               if (err)
-                msg.send err
+                msg.send JSON.stringify err
               else
-                msg.send terminating
+                msg.send JSON.stringify terminating
           when "reboot" or "restart"
             msg.send "Starting #{args}"
             ec2.rebootInstances {InstanceIds: args}, (err, starting) =>
               if (err)
-                msg.send err
+                msg.send JSON.stringify err
               else
-                msg.send starting
+                msg.send JSON.stringify starting
           else
             msg.send "I didn't understand. Did you want me to start, stop, or reboot an instance?"
