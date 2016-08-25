@@ -32,7 +32,7 @@ module.exports = (robot) ->
         msg.send err
       else
         instances = response.Reservations[0].Instances;
-        msg.send "I found #{instances}"
+        msg.send "I found #{JSON.stringify instances}"
         switch instanceCommand
           when "start"
             msg.send "Starting #{args}"
