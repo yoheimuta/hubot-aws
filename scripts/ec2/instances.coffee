@@ -22,7 +22,7 @@ module.exports = (robot) ->
     if(instanceIdArgs.match(','))
       args = instanceIdArgs.split(',')
     else
-      args = instanceIdArgs
+      args = Array(instanceIdArgs)
     aws = require('../../aws.coffee').aws()
     ec2 = new aws.EC2({apiVersion: '2014-10-01'})
     #lets see if the instance(s) exist(s)
