@@ -9,7 +9,7 @@ util = require 'util'
 module.exports = (robot) ->
   robot.respond /ec2 sg delete --group_id=(.*)$/i, (msg) ->
     unless require('../../auth.coffee').canAccess(robot, msg.envelope.user)
-      msg.send "You cannot access this feature. Please contact with admin"
+      msg.send "You cannot access this feature. Please contact an admin."
       return
 
     group_id = msg.match[1].trim() || ''
@@ -25,4 +25,3 @@ module.exports = (robot) ->
       else
         msg.send "Success to delete sg"
         msg.send util.inspect(res, false, null)
-

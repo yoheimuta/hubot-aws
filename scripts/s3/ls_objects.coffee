@@ -44,4 +44,4 @@ module.exports = (robot) ->
         prefix_msg = tsv.stringify(prefix_msgs)
         msg.send prefix_msg
 
-        msg.send "NextMacker is #{res.NextMarker}" || 'NextMarker is none'
+        msg.send "NextMarker is #{res.NextMarker}" || 'NextMarker is none'
