@@ -12,7 +12,7 @@ util = require 'util'
 module.exports = (robot) ->
   robot.respond /cloudwatch alarm delete --name=(.*)$/i, (msg) ->
     unless require('../../auth.coffee').canAccess(robot, msg.envelope.user)
-      msg.send "You cannot access this feature. Please contact with admin"
+      msg.send "You cannot access this feature. Please contact an admin."
       return
 
     alarm_name = msg.match[1]
@@ -27,4 +27,3 @@ module.exports = (robot) ->
         msg.send "Error: #{err}"
       else
         msg.send util.inspect(res, false, null)
-

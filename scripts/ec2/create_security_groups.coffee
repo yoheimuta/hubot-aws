@@ -15,7 +15,7 @@ util = require 'util'
 module.exports = (robot) ->
   robot.respond /ec2 sg create --vpc_id=(.*) --group_name=(.*) --desc=(.*?)(| --dry-run)$/i, (msg) ->
     unless require('../../auth.coffee').canAccess(robot, msg.envelope.user)
-      msg.send "You cannot access this feature. Please contact with admin"
+      msg.send "You cannot access this feature. Please contact an admin."
       return
 
     vpc_id     = msg.match[1].trim()

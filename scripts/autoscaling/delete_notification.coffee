@@ -13,7 +13,7 @@ util = require 'util'
 module.exports = (robot) ->
   robot.respond /autoscaling notification delete --group_name=(.*) --arn=(.*)$/i, (msg) ->
     unless require('../../auth.coffee').canAccess(robot, msg.envelope.user)
-      msg.send "You cannot access this feature. Please contact with admin"
+      msg.send "You cannot access this feature. Please contact an admin."
       return
 
     group_name = msg.match[1].trim()
