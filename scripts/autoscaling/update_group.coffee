@@ -31,7 +31,7 @@ update = (msg, json) ->
 module.exports = (robot) ->
   robot.respond /autoscaling update --json=(.*?)(| --dry-run)$/i, (msg) ->
     unless require('../../auth.coffee').canAccess(robot, msg.envelope.user)
-      msg.send "You cannot access this feature. Please contact with admin"
+      msg.send "You cannot access this feature. Please contact an admin."
       return
 
     json_str = msg.match[1].trim()
@@ -47,7 +47,7 @@ module.exports = (robot) ->
 
   robot.respond /autoscaling update --name=(.*) --min=(.*?)(| --dry-run)$/i, (msg) ->
     unless require('../../auth.coffee').canAccess(robot, msg.envelope.user)
-      msg.send "You cannot access this feature. Please contact with admin"
+      msg.send "You cannot access this feature. Please contact an admin."
       return
 
     name = msg.match[1]
@@ -63,7 +63,7 @@ module.exports = (robot) ->
 
   robot.respond /autoscaling update --name=(.*) --max=(.*?)(| --dry-run)$/i, (msg) ->
     unless require('../../auth.coffee').canAccess(robot, msg.envelope.user)
-      msg.send "You cannot access this feature. Please contact with admin"
+      msg.send "You cannot access this feature. Please contact an admin."
       return
 
     name = msg.match[1]
@@ -79,7 +79,7 @@ module.exports = (robot) ->
 
   robot.respond /autoscaling update --name=(.*) --desired=(.*?)(| --dry-run)$/i, (msg) ->
     unless require('../../auth.coffee').canAccess(robot, msg.envelope.user)
-      msg.send "You cannot access this feature. Please contact with admin"
+      msg.send "You cannot access this feature. Please contact an admin."
       return
 
     name     = msg.match[1]

@@ -30,7 +30,7 @@ Access Control with [hubot-auth](https://github.com/hubot-scripts/hubot-auth).
 ```ruby
 # against user without a valid role
 hubot> hubot ec2 run
-You cannot access this feature. Please contact with admin
+You cannot access this feature. Please contact an admin.
 ```
 
 - You can disable access control like below.
@@ -44,58 +44,62 @@ export HUBOT_AWS_DEBUG="1"
 See [scripts/**.coffee](https://github.com/yoheimuta/hubot-aws/tree/master/scripts) for full documentation.
 
 ```ruby
-hubot autoscaling create - Create an AutoScaling Group
-hubot autoscaling delete --group_name=[group_name] - Delete the AutoScaling Group
-hubot autoscaling delete --group_name=[group_name] --force - Delete the AutoScaling Group with live instances
-hubot autoscaling launch create - Create an AutoScaling LaunchConfiguration
-hubot autoscaling launch delete --name=[launch_configuration_name] - Delete the AutoScaling LaunchConfiguration
-hubot autoscaling launch ls - Displays all AutoScaling LaunchConfigurations
-hubot autoscaling launch ls --name=[launch_configuration_name] - Details an Autoscaling LaunchConfiguration
-hubot autoscaling ls - Displays all AutoScaling Groups
-hubot autoscaling ls --name=[group_name] - Details an Autoscaling Group
-hubot autoscaling notification delete --group_name=[group_name] --arn=[topic_arn] - Delete the AutoScaling Notificatoin
-hubot autoscaling notification ls - Displays all AutoScaling NotificationConfigurations
-hubot autoscaling notification ls --group_name=[group_name] - Details an Autoscaling NotificationConfiguration
-hubot autoscaling notification put - Put an AutoScaling Notifications
-hubot autoscaling policy delete --policy_name=[policy_name] - Delete the AutoScaling Policy
-hubot autoscaling policy ls - Displays all AutoScaling Policies
-hubot autoscaling policy ls --group_name=[group_name] - Details an Autoscaling Policy
-hubot autoscaling policy put --add - Put an AutoScaling ScaleOut Policy
-hubot autoscaling policy put --remove - Put an AutoScaling ScaleIn Policy
-hubot autoscaling update --json=[json] - Update the AutoScaling Group
-hubot autoscaling update --json=[json] --dry-run - Try updating the AutoScaling Group
-hubot autoscaling update --name=[name] --desired=[desired] - Update DesiredCapacity the AutoScaling Group
-hubot autoscaling update --name=[name] --desired=[desired] --dry-run - Try updating DesiredCapacity the AutoScaling Group
-hubot autoscaling update --name=[name] --max=[max] - Update MaxSize of the AutoScaling Group
-hubot autoscaling update --name=[name] --max=[max] --dry-run - Try updating MaxSize of the AutoScaling Group
-hubot autoscaling update --name=[name] --min=[min] - Update MinSize of the AutoScaling Group
-hubot autoscaling update --name=[name] --min=[min] --dry-run - Try updating MinSize of the AutoScaling Group
-hubot autoscaling schedule delete --schedule_name=[policy_name] - Delete the AutoScaling Scheduled Action
-hubot autoscaling schedule ls - Displays all AutoScaling Scheduled Actions
-hubot autoscaling schedule ls --group_name=[group_name] - Details an Autoscaling Scheduled Actions
-hubot autoscaling schedule put - Put an AutoScaling Scheduled Action
-hubot cloudwatch alarm delete --name=[alarm_name] - Delete the Alarm
-hubot cloudwatch alarm ls - Displays all Alarms
-hubot cloudwatch alarm ls --name=[alarm_name] - Details an Alarm
-hubot ec2 ami create --instance_id=*** - Create an ami.
-hubot ec2 ami deregister --ami_id=[ami_id] - Deregisters the specified AMI
-hubot ec2 ami ls - Desplays all AMI(Images)
-hubot ec2 ls - Displays all Instances
-hubot ec2 ls --instance_id=[instance_id] - Details an Instance
-hubot ec2 ls --instance_filter=[instance_name] - Instances that contain instance_name in name
-hubot ec2 run - Run an Instance
-hubot ec2 sg create --group_name=[group_name] --desc=[desc] --vpc_id=[vpc_id] - Create a SecurityGroup
-hubot ec2 sg delete --group_id=[group_id] - Delete the SecurityGroup
-hubot ec2 sg ls - Desplays all SecurityGroups
-hubot ec2 spot ls - Displays all SpotInstances
-hubot ec2 tag create --resource_id=*** --tag_key=*** --tag_value=*** - Create a tag.
-hubot ec2 tag delete --resource_id=*** - Deletes the specified set of tags
-hubot ec2 tag ls - Desplays all tags
-hubot ec2 terminate --instance_id=[instance_id] - Terminate the Instance
-hubot s3 ls - Displays all S3 buckets
-hubot s3 ls --bucket_name=[bucket-name] - Displays all objects
-hubot s3 ls --bucket_name=[bucket-name] --prefix=[prefix] - Displays all objects with prefix
-hubot s3 ls --bucket_name=[bucket-name] --prefix=[prefix] --marker=[marker] - Displays all objects with prefix from marker
+hubot autoscaling create # Create an AutoScaling Group
+hubot autoscaling delete --group_name=[group_name] # Delete the AutoScaling Group
+hubot autoscaling delete --group_name=[group_name] --force # Delete the AutoScaling Group with live instances
+hubot autoscaling launch create # Create an AutoScaling LaunchConfiguration
+hubot autoscaling launch delete --name=[launch_configuration_name] # Delete the AutoScaling LaunchConfiguration
+hubot autoscaling launch ls # Displays all AutoScaling LaunchConfigurations
+hubot autoscaling launch ls --name=[launch_configuration_name] # Details an Autoscaling LaunchConfiguration
+hubot autoscaling ls # Displays all AutoScaling Groups
+hubot autoscaling ls --name=[group_name] # Details an Autoscaling Group
+hubot autoscaling notification delete --group_name=[group_name] --arn=[topic_arn] # Delete the AutoScaling Notificatoin
+hubot autoscaling notification ls # Displays all AutoScaling NotificationConfigurations
+hubot autoscaling notification ls --group_name=[group_name] # Details an Autoscaling NotificationConfiguration
+hubot autoscaling notification put # Put an AutoScaling Notifications
+hubot autoscaling policy delete --policy_name=[policy_name] # Delete the AutoScaling Policy
+hubot autoscaling policy ls # Displays all AutoScaling Policies
+hubot autoscaling policy ls --group_name=[group_name] # Details an Autoscaling Policy
+hubot autoscaling policy put --add # Put an AutoScaling ScaleOut Policy
+hubot autoscaling policy put --remove # Put an AutoScaling ScaleIn Policy
+hubot autoscaling update --json=[json] # Update the AutoScaling Group
+hubot autoscaling update --json=[json] --dry-run # Try updating the AutoScaling Group
+hubot autoscaling update --name=[name] --desired=[desired] # Update DesiredCapacity the AutoScaling Group
+hubot autoscaling update --name=[name] --desired=[desired] --dry-run # Try updating DesiredCapacity the AutoScaling Group
+hubot autoscaling update --name=[name] --max=[max] # Update MaxSize of the AutoScaling Group
+hubot autoscaling update --name=[name] --max=[max] --dry-run # Try updating MaxSize of the AutoScaling Group
+hubot autoscaling update --name=[name] --min=[min] # Update MinSize of the AutoScaling Group
+hubot autoscaling update --name=[name] --min=[min] --dry-run # Try updating MinSize of the AutoScaling Group
+hubot autoscaling schedule delete --schedule_name=[policy_name] # Delete the AutoScaling Scheduled Action
+hubot autoscaling schedule ls # Displays all AutoScaling Scheduled Actions
+hubot autoscaling schedule ls --group_name=[group_name] # Details an Autoscaling Scheduled Actions
+hubot autoscaling schedule put # Put an AutoScaling Scheduled Action
+hubot cloudwatch alarm delete --name=[alarm_name] # Delete the Alarm
+hubot cloudwatch alarm ls # Displays all Alarms
+hubot cloudwatch alarm ls --name=[alarm_name] # Details an Alarm
+hubot ec2 ami create --instance_id=*** # Create an ami.
+hubot ec2 ami deregister --ami_id=[ami_id] # Deregisters the specified AMI
+hubot ec2 ami ls # Desplays all AMI(Images)
+hubot ec2 ls # Displays all Instances
+hubot ec2 ls --instance_id=[instance_id] # Details an Instance
+hubot ec2 ls --instance_filter=[instance_name] # Instances that contain instance_name in name
+hubot ec2 run # Run an Instance
+hubot ec2 sg create --group_name=[group_name] --desc=[desc] --vpc_id=[vpc_id] # Create a SecurityGroup
+hubot ec2 sg delete --group_id=[group_id] # Delete the SecurityGroup
+hubot ec2 sg ls # Desplays all SecurityGroups
+hubot ec2 spot ls # Displays all SpotInstances
+hubot ec2 tag create --resource_id=*** --tag_key=*** --tag_value=*** # Create a tag.
+hubot ec2 tag delete --resource_id=*** # Deletes the specified set of tags
+hubot ec2 tag ls # Desplays all tags
+hubot ec2 terminate --instance_id=[instance_id] # Terminate the Instance
+hubot s3 ls # Displays all S3 buckets
+hubot s3 ls --bucket_name=[bucket-name] # Displays all objects
+hubot s3 ls --bucket_name=[bucket-name] --prefix=[prefix] # Displays all objects with prefix
+hubot s3 ls --bucket_name=[bucket-name] --prefix=[prefix] --marker=[marker] # Displays all objects with prefix from marker
+hubot sns list topics
+hubot sns list subscriptions
+hubot sns list subscription in [topicArn]
+hubot sns publish [message] to [topicArn]
 ```
 
 ## Configurations
@@ -307,6 +311,39 @@ images/001c03788ee31167872d38ce09493a4deb1cbe11728a762065ee1a5acfd1404b/
 ...
 ```
 
+### SNS
+
+#### Configuring
+
+In addition to administration of SNS, hubot-aws can also receive push notifications.
+
+* Create a new SNS topic
+* Create a subscription and choose HTTP(S). The default configuration is http://<huboturl>:8080/hubot/sns
+    * The URL can be set using HUBOT_SNS_URL
+* Set HUBOT_SNS_JID to hubot's jabber ID
+
+You should see the subscription ID change from PendingConfirmation to a valid subscription id.
+
+#### Receiving Messages
+
+Use the Subject property to set which room the message should be delivered in, usually its JID. Messages can be raw or JSON format, but JSON is preferred.
+If you are using [hubot-hipchat](https://github.com/hipchat/hubot-hipchat) use the plain old room name for the Subject.
+The Subject property does not accept multiple rooms. Additionally the Messages does not natively process html templates, but one could implement it.
+
+#### Sending Messages
+
+`hubot-aws` does not send the message to a chat room. This is due to the myriad of adapters and clients hubot supports.
+To process a message and send it to your chat room, hook into the `sns:notification` event.
+
+```
+# Use this snippet in your own scripts to send messages to the chat room from SNS
+robot.on 'sns:notification', (message) ->
+  # if using HipChat the channelID function converts the common name to the room JID
+  robot.messageRoom sns.channelID(message.subject), message.message
+  # if using another adapter
+    robot.messageRoom message.subject, message.message
+```
+
 ## Recommended Usage
 
 ### Use `--dry-run`
@@ -364,15 +401,15 @@ HUBOT_AWS_REGION=ap-northeast-1
 # Search commandHelps with `autoscaling launch`
 hubot> hubot autoscaling launch hint
 hubot>
-hubot autoscaling launch create --name=[launch_configuration_name] - Create an AutoScaling LaunchConfiguration
-hubot autoscaling launch create --name=[launch_configuration_name] --dry-run - Try creating an AutoScaling LaunchConfiguration
-hubot autoscaling launch delete --name=[launch_configuration_name] - Delete the AutoScaling LaunchConfiguration
-hubot autoscaling launch ls - Displays all AutoScaling LaunchConfigurations
-hubot autoscaling launch ls --name=[launch_configuration_name] - Details an Autoscaling LaunchConfiguration
+hubot autoscaling launch create --name=[launch_configuration_name] # Create an AutoScaling LaunchConfiguration
+hubot autoscaling launch create --name=[launch_configuration_name] --dry-run # Try creating an AutoScaling LaunchConfiguration
+hubot autoscaling launch delete --name=[launch_configuration_name] # Delete the AutoScaling LaunchConfiguration
+hubot autoscaling launch ls # Displays all AutoScaling LaunchConfigurations
+hubot autoscaling launch ls --name=[launch_configuration_name] # Details an Autoscaling LaunchConfiguration
 
 # Search commandHelps with `autoscaling launch create`
 hubot> hubot autoscaling launch create hint
 hubot>
-hubot autoscaling launch create --name=[launch_configuration_name] - Create an AutoScaling LaunchConfiguration
-hubot autoscaling launch create --name=[launch_configuration_name] --dry-run - Try creating an AutoScaling LaunchConfiguration
+hubot autoscaling launch create --name=[launch_configuration_name] # Create an AutoScaling LaunchConfiguration
+hubot autoscaling launch create --name=[launch_configuration_name] --dry-run # Try creating an AutoScaling LaunchConfiguration
 ```

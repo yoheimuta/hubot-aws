@@ -34,7 +34,7 @@ getArgParams = (arg) ->
 module.exports = (robot) ->
   robot.respond /ec2 ami create(.*)$/i, (msg) ->
     unless require('../../auth.coffee').canAccess(robot, msg.envelope.user)
-      msg.send "You cannot access this feature. Please contact with admin"
+      msg.send "You cannot access this feature. Please contact an admin."
       return
 
     arg_params = getArgParams(msg.match[1])
@@ -68,4 +68,3 @@ module.exports = (robot) ->
         msg.send "Error: #{err}"
       else
         msg.send "Success to create AMI: ami_id=#{res.ImageId}"
-
