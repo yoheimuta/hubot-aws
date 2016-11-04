@@ -29,13 +29,12 @@ module.exports = (robot) ->
         if(err)
           msg.send err
         else
-          publicIp = addresses.Addresses[0].PublicIp
           ec2.associateAddress params, (err, response) ->
             if err
               msg.send err
             else
               url = "https://console.aws.amazon.com/ec2/v2/home?region=" + process.env.HUBOT_AWS_REGION + "#Instances:instanceId=" + params.InstanceId + ";sort=desc:tag:Name"
-              msg.send "I attached " + publicIp + " to the instance " + params.InstanceId + ". Association Id is " + response.AssociationId + "."
+              msg.send "I attached " + params.PublicIp + " to the instance " + params.InstanceId + ". Association Id is " + response.AssociationId + "."
               msg.send url
     else
       msg.send "I'm not sure I understood what you wanted me to do."
