@@ -1,8 +1,8 @@
 module.exports = (robot) ->
-  robot.hear /list clusters (.*)$/i, (msg) ->
+  robot.hear /ecs list clusters (.*)$/i, (msg) ->
     aws = require('../../aws.coffee').aws()
     ecs = new aws.ECS()
-    params = msg.params || {}
+    params = msg.match[1] || {}
     ecs.listClusters params, (err, data) ->
       if err
         msg.send err
