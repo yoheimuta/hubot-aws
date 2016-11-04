@@ -16,11 +16,11 @@ module.exports = (robot) ->
         for address in response.Addresses
           keys = Object.keys(address)
           msg.send keys.join(" | ")
-            for eip in address
-              row = ""
-              for key in keys
-                if eip[key] == undefined
-                  row += "UNASSOCIATED  | "
-                else
-                  row += eip[key] + " | "
-              msg.send row
+          for eip in address
+            row = ""
+            for key in keys
+              if eip[key] == undefined
+                row += "UNASSOCIATED  | "
+              else
+                row += eip[key] + " | "
+            msg.send row
