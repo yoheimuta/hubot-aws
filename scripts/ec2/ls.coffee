@@ -72,6 +72,7 @@ module.exports = (robot) ->
               az     : ins.Placement.AvailabilityZone
               subnet : ins.SubnetId
               type   : ins.InstanceType
+              eip     : ins.PublicIpAddress
               ip     : ins.PrivateIpAddress
               name   : name || '[NoName]'
             })
