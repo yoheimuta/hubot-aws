@@ -24,6 +24,6 @@ module.exports = (robot) ->
 
     params = {
       GroupName: groupname
-    };
+    }
 
     require('./lib_user_group.coffee').listUsersInGroup(params, msg)

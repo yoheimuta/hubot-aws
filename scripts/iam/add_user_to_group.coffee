@@ -31,6 +31,6 @@ module.exports = (robot) ->
     params = {
       GroupName: groupname,
       UserName: username
-    };
+    }
 
     require('./lib_user_group.coffee').addUserToGroup(params, msg)
