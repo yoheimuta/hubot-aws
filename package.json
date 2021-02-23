@@ -12,9 +12,9 @@
   },
   "dependencies": {
     "async": "0.9.0",
-    "aws-sdk": "2.4.1",
+    "aws-sdk": "^2.849.0",
     "cson": "3.0.1",
-    "moment": "2.13.0",
+    "moment": "^2.29.1",
     "tsv": "0.2.0",
     "underscore": "1.8.3"
   },
