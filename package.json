@@ -1,6 +1,6 @@
 {
   "name": "hubot-aws",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Hubot masters aws commands",
   "repository": {
     "type": "git",
